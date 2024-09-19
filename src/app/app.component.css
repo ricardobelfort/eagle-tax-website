@@ -32,7 +32,8 @@
       }
 
       .btn-cta {
-        padding: 14px 140px;
+        width: 400px;
+        height: 56px;
         border-radius: 5px;
         background-color: var(--white-color);
         color: var(--primary-color);
@@ -40,6 +41,7 @@
         font-weight: 700;
         cursor: pointer;
         transition: all 0.2s ease;
+        border: none;
       }
 
       .btn-cta:hover {
@@ -76,7 +78,7 @@
 
     .group {
       width: 100%;
-      background-color: #f0f0f0;
+      background-color: var(--light-color);
       text-align: center;
       padding: 100px 0;
 
@@ -132,12 +134,104 @@
     .maps {
       width: 100%;
       max-width: 100%;
+      height: 600px;
       overflow: hidden;
 
       iframe {
         width: 100%;
         height: 600px;
         border: 0;
+      }
+    }
+
+    .contact {
+      width: 100%;
+      background-color: var(--light-color);
+      text-align: center;
+      padding: 100px 0;
+
+      .contact-content {
+        width: 960px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .contact-info {
+        flex: 1;
+        text-align: left;
+
+        h2 {
+          font-size: 36px;
+          font-weight: 700;
+          margin-bottom: 24px;
+        }
+
+        .contact-info-items {
+          margin-bottom: 16px;
+
+          li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+          }
+        }
+      }
+
+      .contact-form {
+        flex: 1;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
+          label {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tx-color);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          input,
+          textarea {
+            width: 100%;
+            font-size: 16px;
+            padding: 16px;
+            border: 1px solid var(--inp-border);
+            border-radius: 5px;
+            background-color: var(--white-color);
+            color: var(--white-color);
+          }
+
+          input::placeholder,
+          textarea::placeholder {
+            color: var(--tx-color);
+          }
+
+          button {
+            width: 100%;
+            height: 56px;
+            border: 0;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+
+          button:hover {
+            background-color: var(--primary-hover);
+            color: var(--white-color);
+          }
+        }
       }
     }
   }

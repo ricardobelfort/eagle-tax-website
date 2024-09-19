@@ -45,15 +45,16 @@ body {
 
 :root {
   --primary-color: #003399;
+  --primary-hover: #072c75;
   --secondary-color: #191c33;
   --tertiary-color: #ff3333;
   --light-color: #f6f6f6;
   --white-color: #fff;
   --white-hover: #eaeaea;
   --tx-color: #555658;
+  --inp-border: #dedede;
 }
 
-a {
-  text-decoration: none;
-  color: var(--white-color);
+ul {
+  list-style: none;
 }
