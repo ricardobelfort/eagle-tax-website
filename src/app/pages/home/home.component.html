@@ -11,8 +11,8 @@
 </section>
 
 <main class="main-content">
-  <section class="service">
-    <article>
+  <section class="service-form">
+    <article class="left">
       <h2>Tenha um atendimento personalizado</h2>
       <p>
         Aqui, você conta com especialistas em uma ampla gama de serviços
@@ -20,23 +20,29 @@
         EUA.
       </p>
     </article>
-    <article>
-      <h3>Como podemos te ajudar?</h3>
-      <p>
-        Preencha o formulário abaixo para que possamos oferecer o melhor serviço
-        para você.
-      </p>
-      <form>
+    <article class="right">
+      <header>
+        <h3>Como podemos te ajudar?</h3>
+        <p>
+          Preencha o formulário abaixo para que possamos oferecer o melhor
+          serviço para você.
+        </p>
+      </header>
+
+      <form class="custom-form">
         <label for="impostosPessoais">
-          <input type="checkbox" name="impostosPessoais" id="ck1" />
+          <input type="checkbox" name="impostosPessoais" id="1" />
+          impostos pessoais
         </label>
         <label for="pequenosNegocios">
-          <input type="checkbox" name="pequenosNegocios" id="ck2" />
+          <input type="checkbox" name="pequenosNegocios" id="2" />
+          Pequenos negócios
         </label>
-        <div class="steps">
+        <div class="status">
           <small>10% completo</small>
-          <input type="range" name="progress" id="progress" />
+          <progress id="file" value="20" max="100"></progress>
         </div>
+        <button type="submit">Próximo</button>
       </form>
     </article>
   </section>

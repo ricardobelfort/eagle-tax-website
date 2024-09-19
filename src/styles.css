@@ -52,7 +52,9 @@ body {
   --white-color: #fff;
   --white-hover: #eaeaea;
   --tx-color: #555658;
+  --tx-bold: #202020;
   --inp-border: #dedede;
+  --inp-checked: #639e74;
 }
 
 ul {
