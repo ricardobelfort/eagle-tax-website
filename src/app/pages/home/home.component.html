@@ -48,9 +48,10 @@
   </section>
 
   <section class="group">
-    <div class="section-content">
-      <h2>Somos um grupo de indivíduos com uma grande missão</h2>
+    <div class="content">
+      <img src="image1.jpg" alt="Missão" loading="lazy" />
       <article>
+        <h2>Somos um grupo de indivíduos com uma grande missão</h2>
         <p>
           Somos um grupo dedicado a auxiliar residentes nos EUA na regularização
           e pagamento de impostos de maneira justa e descomplicada.
@@ -61,11 +62,10 @@
         </p>
       </article>
     </div>
-    <img src="image.jpg" alt="" />
   </section>
 
-  <section class="service-group">
-    <header class="service-group-header">
+  <section class="services">
+    <header class="services-header">
       <h2>Nossos serviços</h2>
       <p>
         Explore nosso portfólio e escolha o serviço que melhor atende às suas
@@ -148,6 +148,47 @@
     </div>
   </section>
 
+  <section class="brands">
+    <h2>Nossos clientes</h2>
+    <div class="brands-content">
+      <img
+        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+        src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
+        alt="Transistor"
+        width="158"
+        height="48"
+      />
+      <img
+        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+        src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"
+        alt="Reform"
+        width="158"
+        height="48"
+      />
+      <img
+        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+        src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"
+        alt="Tuple"
+        width="158"
+        height="48"
+      />
+      <img
+        class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
+        src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
+        alt="SavvyCal"
+        width="158"
+        height="48"
+      />
+      <img
+        class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
+        src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
+        alt="Statamic"
+        width="158"
+        height="48"
+      />
+    </div>
+  </section>
+
   <section class="maps">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3577.2203121495413!2d-80.20442051399552!3d26.286957027479403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d91b45277e57cb%3A0x72234b08d2069d38!2sEagle%20Tax!5e0!3m2!1spt-BR!2sbr!4v1726743530711!5m2!1spt-BR!2sbr"
@@ -182,17 +223,33 @@
         </ul>
       </aside>
 
-      <article class="contact-form">
-        <form>
-          <label for="name">
+      <div class="contact-form">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <label for="nome">
             Nome
             <input
               type="text"
-              name="name"
-              id="name"
+              name="nome"
+              id="nome"
+              formControlName="nome"
+              autocomplete="off"
               placeholder="Insira seu nome"
               required
             />
+            <div
+              *ngIf="
+                contactForm.get('nome')?.invalid &&
+                contactForm.get('nome')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="contactForm.get('nome')?.errors?.['required']"
+                >Nome é obrigatório.</small
+              >
+              <small *ngIf="contactForm.get('nome')?.errors?.['minlength']"
+                >Nome deve ter pelo menos 3 caracteres.</small
+              >
+            </div>
           </label>
           <label for="email">
             E-mail
@@ -200,33 +257,76 @@
               type="email"
               name="email"
               id="email"
+              formControlName="email"
               placeholder="Insira seu e-mail"
               required
             />
+            <div
+              *ngIf="
+                contactForm.get('email')?.invalid &&
+                contactForm.get('email')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="contactForm.get('email')?.errors?.['required']"
+                >E-mail é obrigatório.</small
+              >
+              <small *ngIf="contactForm.get('email')?.errors?.['email']"
+                >E-mail inválido.</small
+              >
+            </div>
           </label>
-          <label for="phone">
+          <label for="telefone">
             Telefone
             <input
               type="tel"
-              name="phone"
-              id="phone"
-              placeholder="+xx (xx) xxxx-xxxx"
+              name="telefone"
+              id="telefone"
+              formControlName="telefone"
+              placeholder="(XX) XXXXX-XXXX"
               required
             />
+            <div
+              *ngIf="
+                contactForm.get('telefone')?.invalid &&
+                contactForm.get('telefone')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="contactForm.get('telefone')?.errors?.['required']"
+                >Telefone é obrigatório.</small
+              >
+            </div>
           </label>
-          <label for="message">
+          <label for="messagem">
             Mensagem
             <textarea
-              name="message"
-              id="message"
+              name="messagem"
+              id="messagem"
+              formControlName="messagem"
               placeholder="Mensagem"
               rows="5"
               required
             ></textarea>
+            <div
+              *ngIf="
+                contactForm.get('messagem')?.invalid &&
+                contactForm.get('messagem')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="contactForm.get('messagem')?.errors?.['required']"
+                >Mensagem é obrigatória.</small
+              >
+              <small *ngIf="contactForm.get('messagem')?.errors?.['minlength']"
+                >Mensagem deve ter pelo menos 10 caracteres.</small
+              >
+            </div>
           </label>
-          <button type="submit">Enviar</button>
+          <button type="submit" [disabled]="contactForm.invalid">Enviar</button>
         </form>
-      </article>
+      </div>
     </div>
+    <app-toast></app-toast>
   </section>
 </main>

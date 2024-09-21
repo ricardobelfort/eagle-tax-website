@@ -34,7 +34,7 @@
     justify-content: space-between;
     padding: 4px;
     border-radius: 30px;
-    background-color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.25);
   }
 
   .custom-select-trigger img {
