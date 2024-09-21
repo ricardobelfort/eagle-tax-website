@@ -51,6 +51,7 @@ body {
   --light-color: #f6f6f6;
   --white-color: #fff;
   --white-hover: #eaeaea;
+  --a-hover: #84a3e2;
   --tx-color: #555658;
   --tx-bold: #202020;
   --inp-border: #dedede;
@@ -73,4 +74,29 @@ h5,
 h6 {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+/* Slim Scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Largura da scrollbar */
+  height: 8px; /* Altura da scrollbar horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor do track da scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Cor do thumb da scrollbar */
+  border-radius: 4px; /* Bordas arredondadas do thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do thumb da scrollbar ao passar o mouse */
+}
+
+/* Para navegadores que suportam scrollbar-color e scrollbar-width */
+* {
+  scrollbar-width: thin; /* Largura da scrollbar */
+  scrollbar-color: #888 #f1f1f1; /* Cor do thumb e do track da scrollbar */
 }
