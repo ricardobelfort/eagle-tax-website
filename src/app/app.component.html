@@ -1,4 +1,11 @@
 <div class="container">
   <router-outlet />
   <app-footer></app-footer>
+  <button
+    class="back-to-top"
+    [ngClass]="{ show: showBackToTop }"
+    (click)="scrollToTop()"
+  >
+    <img src="arrow-up.svg" alt="Botão de voltar ao topo" />
+  </button>
 </div>

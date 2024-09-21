@@ -1,3 +1,30 @@
 .container {
   width: 100%;
+  position: relative;
+}
+
+.container .back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--a-hover);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.container .back-to-top.show {
+  opacity: 1;
+  visibility: visible;
 }
