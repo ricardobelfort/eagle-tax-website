@@ -1,5 +1,4 @@
 <section class="hero">
-  <app-header></app-header>
   <article class="hero-content">
     <h2 class="hero-title">Serviços contábeis & Empresariais</h2>
     <p class="hero-text">
@@ -8,6 +7,18 @@
     </p>
     <button class="btn-cta" routerLink="/contact">Fale conosco</button>
   </article>
+  <ngx-slick-carousel
+    class="carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit()"
+  >
+    @for (slide of slides; track slide.img) {
+    <div ngxSlickItem class="slide">
+      <img src="{{ slide.img }}" loading="lazy" alt="" width="100%" />
+    </div>
+    }
+  </ngx-slick-carousel>
 </section>
 
 <main class="main-content">

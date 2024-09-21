@@ -19,6 +19,7 @@ import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { RecaptchaComponent, RecaptchaModule } from 'ng-recaptcha';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ import { RecaptchaComponent, RecaptchaModule } from 'ng-recaptcha';
     NgxMaskDirective,
     NgxMaskPipe,
     RecaptchaModule,
+    SlickCarouselModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -41,6 +43,39 @@ export class HomeComponent implements OnInit {
   @ViewChild('captchaRef') captchaRef!: RecaptchaComponent;
   contactForm!: FormGroup;
   private fb = inject(FormBuilder);
+
+  slides = [
+    {
+      img: 'https://images.pexels.com/photos/6963017/pexels-photo-6963017.jpeg',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1579444741963-5ae219cfe27c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+      img: 'https://images.pexels.com/photos/6863244/pexels-photo-6863244.jpeg',
+    },
+  ];
+
+  slideConfig = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    customPaging: function (_slider: any, _i: any) {
+      return '<button class="slick-dots"></button>';
+    },
+  };
+
+  slickInit() {
+    console.log('slick initialized');
+  }
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({

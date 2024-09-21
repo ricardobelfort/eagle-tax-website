@@ -14,25 +14,30 @@ export class HeaderComponent {
   selectedLanguage = 'br';
   dropdownOpen = false;
 
-  options = [
-    { value: 'en', text: 'English', img: 'united-states.png' },
-    { value: 'es', text: 'Spanish', img: 'spain.png' },
-    { value: 'br', text: 'Portuguese', img: 'brazil.png' },
+  languages = [
+    { value: 'en', label: 'English', image: 'us-flag.png' },
+    { value: 'es', label: 'Spanish', image: 'spain-flag.png' },
+    { value: 'br', label: 'Portuguese', image: 'brazil-flag.png' },
   ];
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
-  selectOption(option: any) {
-    this.selectedLanguage = option.value;
+  selectLanguage(language: string) {
+    this.selectedLanguage = language;
     this.dropdownOpen = false;
   }
 
   getSelectedLanguageImage() {
-    const selectedOption = this.options.find(
-      (option) => option.value === this.selectedLanguage
+    const selected = this.languages.find(
+      (lang) => lang.value === this.selectedLanguage
     );
-    return selectedOption ? selectedOption.img : '';
+    return selected ? selected.image : '';
+  }
+
+  onLanguageChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedLanguage = selectElement.value;
   }
 }

@@ -1,10 +1,11 @@
 .header {
   width: 960px;
-  height: 64px;
+  height: 84px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   .title {
     display: none;
@@ -14,13 +15,13 @@
     height: 42px;
   }
 
-  .hidden-select {
-    display: none;
-  }
-
   .custom-select-wrapper {
     position: relative;
     display: inline-block;
+  }
+
+  .hidden-select {
+    display: none;
   }
 
   .custom-select {
@@ -32,9 +33,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px;
+    padding: 4px 10px 4px 4px;
     border-radius: 30px;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.09);
   }
 
   .custom-select-trigger img {
@@ -57,7 +58,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--white-color);
+    background-color: rgba(255, 255, 255, 0.09);
     z-index: 10;
   }
 
@@ -75,6 +76,11 @@
   .custom-option img {
     width: 32px;
     height: 32px;
+  }
+
+  .custom-option.selected {
+    background-color: #007bff;
+    color: #fff;
   }
 
   .custom-option:hover {

@@ -21,6 +21,7 @@
       id="language"
       class="hidden-select"
       [(ngModel)]="selectedLanguage"
+      (change)="onLanguageChange($event)"
     >
       <option value="en">English</option>
       <option value="es">Spanish</option>
@@ -34,10 +35,11 @@
       <div class="custom-options" [class.open]="dropdownOpen">
         <span
           class="custom-option"
-          *ngFor="let option of options"
-          (click)="selectOption(option)"
+          *ngFor="let option of languages"
+          [class.selected]="option.value === selectedLanguage"
+          (click)="selectLanguage(option.value)"
         >
-          <img [src]="option.img" [alt]="option.text" />
+          <img [src]="option.image" [alt]="option.label" />
         </span>
       </div>
     </div>

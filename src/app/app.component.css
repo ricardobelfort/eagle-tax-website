@@ -3,6 +3,14 @@
   position: relative;
 }
 
+.container .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
 .container .back-to-top {
   position: fixed;
   bottom: 20px;
