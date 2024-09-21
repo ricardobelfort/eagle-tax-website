@@ -51,10 +51,7 @@ export class HomeComponent implements OnInit {
       telefone: [
         '',
         {
-          validators: [
-            Validators.required,
-            Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/),
-          ],
+          validators: [Validators.required],
           updateOn: 'blur',
         },
       ],

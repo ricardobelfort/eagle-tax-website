@@ -234,6 +234,11 @@
               formControlName="nome"
               autocomplete="off"
               placeholder="Insira seu nome"
+              [ngClass]="{
+                'is-invalid':
+                  contactForm.get('nome')?.invalid &&
+                  contactForm.get('nome')?.touched
+              }"
               required
             />
             <div
@@ -259,6 +264,11 @@
               id="email"
               formControlName="email"
               placeholder="Insira seu e-mail"
+              [ngClass]="{
+                'is-invalid':
+                  contactForm.get('email')?.invalid &&
+                  contactForm.get('email')?.touched
+              }"
               required
             />
             <div
@@ -284,6 +294,12 @@
               id="telefone"
               formControlName="telefone"
               placeholder="(XX) XXXXX-XXXX"
+              [mask]="'(XX) XXXXX-XXXX'"
+              [ngClass]="{
+                'is-invalid':
+                  contactForm.get('telefone')?.invalid &&
+                  contactForm.get('telefone')?.touched
+              }"
               required
             />
             <div
@@ -306,6 +322,11 @@
               formControlName="messagem"
               placeholder="Mensagem"
               rows="5"
+              [ngClass]="{
+                'is-invalid':
+                  contactForm.get('messagem')?.invalid &&
+                  contactForm.get('messagem')?.touched
+              }"
               required
             ></textarea>
             <div

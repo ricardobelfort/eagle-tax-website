@@ -55,6 +55,7 @@ body {
   --tx-bold: #202020;
   --inp-border: #dedede;
   --inp-checked: #639e74;
+  --inp-disabled: #4e75be;
   --error-msg: #f44336;
   --success-msg: #4caf50;
   --warning-msg: #ff9800;

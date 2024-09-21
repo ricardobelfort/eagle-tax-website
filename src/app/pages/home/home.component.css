@@ -398,8 +398,8 @@
   background-color: #e8f5e9;
 }
 
-.contact-form form input:invalid,
-.contact-form form textarea:invalid {
+.contact-form form input.is-invalid,
+.contact-form form textarea.is-invalid {
   border-color: #f44336;
   background-color: #ffebee;
 }
@@ -411,8 +411,8 @@
 }
 
 .contact-form form button:disabled {
-  background-color: #ccc;
-  color: #666;
+  background-color: var(--inp-disabled);
+  color: var(--white-color);
   cursor: not-allowed;
 }
 
