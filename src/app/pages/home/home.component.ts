@@ -1,10 +1,4 @@
-import {
-  Component,
-  HostListener,
-  inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { RouterLink } from '@angular/router';
 import {
@@ -18,7 +12,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-import { RecaptchaComponent, RecaptchaModule } from 'ng-recaptcha';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
@@ -32,7 +25,6 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     SharedModule,
     NgxMaskDirective,
     NgxMaskPipe,
-    RecaptchaModule,
     SlickCarouselModule,
   ],
   templateUrl: './home.component.html',
@@ -40,7 +32,6 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 })
 export class HomeComponent implements OnInit {
   @ViewChild(ToastComponent) toast!: ToastComponent;
-  @ViewChild('captchaRef') captchaRef!: RecaptchaComponent;
   contactForm!: FormGroup;
   private fb = inject(FormBuilder);
 
@@ -135,7 +126,6 @@ export class HomeComponent implements OnInit {
             this.toast.show();
             // Resetar o formulário após o envio bem-sucedido
             this.contactForm.reset();
-            this.captchaRef.reset();
           },
           (error) => {
             console.log('FAILED...', error);

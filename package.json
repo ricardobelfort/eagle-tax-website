@@ -20,7 +20,6 @@
     "@angular/router": "^18.2.0",
     "emailjs-com": "^3.2.0",
     "jquery": "^3.7.1",
-    "ng-recaptcha": "^13.2.1",
     "ngx-mask": "^18.0.0",
     "ngx-slick-carousel": "^17.0.0",
     "rxjs": "~7.8.0",
