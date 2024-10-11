@@ -58,6 +58,7 @@ body {
   --inp-border: #dedede;
   --inp-checked: #639e74;
   --inp-disabled: #4e75be;
+  --inp-hover: #f0f0f0;
   --error-msg: #f44336;
   --success-msg: #4caf50;
   --warning-msg: #ff9800;

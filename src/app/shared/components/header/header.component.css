@@ -53,13 +53,15 @@
   }
 
   .custom-options {
-    display: none;
+    width: 160px;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 0.09);
-    z-index: 10;
+    z-index: 1000;
+    display: none;
+    color: #fff;
   }
 
   .custom-options.open {
@@ -67,24 +69,26 @@
   }
 
   .custom-option {
-    padding: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
   }
 
   .custom-option img {
     width: 32px;
     height: 32px;
+    margin-right: 10px;
   }
 
   .custom-option.selected {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--white-color);
+    color: var(--secondary-color);
   }
 
   .custom-option:hover {
-    background-color: #f0f0f0;
+    background-color: var(--inp-hover);
+    color: var(--secondary-color);
   }
 
   .navbar {
