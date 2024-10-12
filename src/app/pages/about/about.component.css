@@ -1,0 +1,215 @@
+.hero {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  background: linear-gradient(
+      81deg,
+      rgba(0, 51, 153, 0.85),
+      rgba(0, 17, 51, 0.5)
+    ),
+    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+      no-repeat center 80% / cover;
+  mix-blend-mode: multiply;
+}
+
+.hero-content {
+  position: absolute;
+  top: 32%;
+  left: 25%;
+  color: white;
+}
+
+.hero-content .hero-title {
+  width: 580px;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-content .hero-text {
+  width: 410px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-and-value {
+  width: 960px;
+  margin: 0 auto;
+  padding: 100px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+}
+
+.mission-and-value .mission,
+.mission-and-value .value {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mission-and-value .mission h2,
+.mission-and-value .value h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.mission-and-value .mission img,
+.mission-and-value .value img {
+  width: 36px;
+  height: 36px;
+}
+
+.our-values {
+  width: 100%;
+  background-color: var(--light-color);
+  text-align: center;
+  padding: 100px 0;
+}
+
+.our-values .content {
+  width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.our-values-header,
+.our-team-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.our-values-header h2,
+.our-team-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.our-values .content .content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.our-values .content-grid .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white-color);
+  padding: 32px;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.our-values .content-grid .item span {
+  width: 74px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.our-values .content-grid .item img {
+  width: 36px;
+  height: 36px;
+}
+
+.our-values .content-grid .item h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.group {
+  width: 100%;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.group .content {
+  width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.group .content img {
+  flex: 1;
+  border-radius: 10px 0 10px 0;
+}
+
+.group .content article {
+  flex: 1;
+  text-align: left;
+}
+
+.group .content article h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.group .content article p {
+  font-size: 16px;
+  color: var(--tx-color);
+  margin-bottom: 24px;
+}
+
+.our-team {
+  width: 100%;
+  background-color: var(--light-color);
+  text-align: center;
+  padding: 100px 0;
+}
+
+.our-team .content {
+  width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.our-team .content .content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 140px;
+  row-gap: 50px;
+}
+
+.our-team .content .content-grid .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-team .content .content-grid .item img {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+}
+
+.image-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
