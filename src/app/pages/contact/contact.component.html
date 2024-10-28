@@ -1,1 +1,189 @@
-<p>contact works!</p>
+<section class="hero">
+  <article class="hero-content">
+    <h1 class="hero-title">Entre em contato com a nossa equipe!</h1>
+    <p class="hero-text">
+      Estamos aqui para ajudar! Se você tiver alguma dúvida, sugestão ou
+      simplesmente quiser falar conosco, não hesite em entrar em contato.
+    </p>
+    <p class="hero-text">
+      Preencha o formulário abaixo ou envie um e-mail diretamente para a nossa
+      equipe. Responderemos o mais rápido possível para garantir que sua
+      experiência seja a melhor possível.
+    </p>
+  </article>
+</section>
+
+<main class="main-content">
+  <section class="group">
+    <div class="content">
+      <div class="content-grid">
+        <div class="item">
+          <img src="assets/images/ic-tel.svg" alt="Eagle tax phone" />
+          <h3>Telefone</h3>
+          <p>
+            (954) 532-3842
+          </p>
+        </div>
+        <div class="item">
+          <img src="assets/images/ic-whatsapp.svg" alt="" />
+          <h3>WhatsApp</h3>
+          <p>
+            (954) 532-3842
+          </p>
+        </div>
+        <div class="item">
+          <img src="assets/images/ic-mail-fill.svg" alt="" />
+          <h3>E-mail</h3>
+          <p>
+            info&#64;eagle-tax.com
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact-content">
+      <div class="contact-form">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <label for="nome">
+            Nome
+            <input
+              type="text"
+              name="nome"
+              id="nome"
+              formControlName="nome"
+              autocomplete="off"
+              placeholder="Insira seu nome"
+              [ngClass]="{
+                'is-invalid':
+                  contactForm.get('nome')?.invalid &&
+                  contactForm.get('nome')?.touched
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                contactForm.get('nome')?.invalid &&
+                contactForm.get('nome')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="contactForm.get('nome')?.errors?.['required']"
+                >Nome é obrigatório.</small
+              >
+              <small *ngIf="contactForm.get('nome')?.errors?.['minlength']"
+                >Nome deve ter pelo menos 3 caracteres.</small
+              >
+            </div>
+          </label>
+
+          <div style="display: flex; justify-content: space-between; gap: 50px;">
+            <label for="email">
+              E-mail
+              <input
+                type="email"
+                name="email"
+                id="email"
+                formControlName="email"
+                placeholder="Insira seu e-mail"
+                [ngClass]="{
+                  'is-invalid':
+                    contactForm.get('email')?.invalid &&
+                    contactForm.get('email')?.touched
+                }"
+                required
+              />
+              <div
+                *ngIf="
+                  contactForm.get('email')?.invalid &&
+                  contactForm.get('email')?.touched
+                "
+                class="error-message"
+              >
+                <small *ngIf="contactForm.get('email')?.errors?.['required']"
+                  >E-mail é obrigatório.</small
+                >
+                <small *ngIf="contactForm.get('email')?.errors?.['email']"
+                  >E-mail inválido.</small
+                >
+              </div>
+            </label>
+            <label for="telefone">
+              Telefone
+              <input
+                type="tel"
+                name="telefone"
+                id="telefone"
+                formControlName="telefone"
+                placeholder="(XX) XXXXX-XXXX"
+                [mask]="'(XX) XXXXX-XXXX'"
+                [ngClass]="{
+                  'is-invalid':
+                    contactForm.get('telefone')?.invalid &&
+                    contactForm.get('telefone')?.touched
+                }"
+                required
+              />
+              <div
+                *ngIf="
+                  contactForm.get('telefone')?.invalid &&
+                  contactForm.get('telefone')?.touched
+                "
+                class="error-message"
+              >
+                <small *ngIf="contactForm.get('telefone')?.errors?.['required']"
+                  >Telefone é obrigatório.</small
+                >
+              </div>
+            </label>
+          </div>
+          
+          <label for="messagem">
+            Mensagem
+            <textarea
+              name="messagem"
+              id="messagem"
+              formControlName="messagem"
+              placeholder="Mensagem"
+              rows="5"
+              [ngClass]="{
+                'is-invalid':
+                  contactForm.get('messagem')?.invalid &&
+                  contactForm.get('messagem')?.touched
+              }"
+              required
+            ></textarea>
+            <div
+              *ngIf="
+                contactForm.get('messagem')?.invalid &&
+                contactForm.get('messagem')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="contactForm.get('messagem')?.errors?.['required']"
+                >Mensagem é obrigatória.</small
+              >
+              <small *ngIf="contactForm.get('messagem')?.errors?.['minlength']"
+                >Mensagem deve ter pelo menos 10 caracteres.</small
+              >
+            </div>
+          </label>
+          <button type="submit" [disabled]="contactForm.invalid">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="maps">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3577.2203121495413!2d-80.20442051399552!3d26.286957027479403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d91b45277e57cb%3A0x72234b08d2069d38!2sEagle%20Tax!5e0!3m2!1spt-BR!2sbr!4v1726743530711!5m2!1spt-BR!2sbr"
+      width="100%"
+      height="600"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </section>
+</main>
