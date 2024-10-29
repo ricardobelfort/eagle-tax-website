@@ -24,13 +24,15 @@ export class ServicesComponent {
     },
     {
       icon: 'assets/images/icon-corporate.svg',
-      title: 'Corporate',
-      content: 'Descrição detalhada do serviço 3.',
+      title: 'Corporate Services',
+      content:
+        'We offer comprehensive corporate services, including the formation and dissolution of LLCs and corporations. Our experts guide you through the legal requirements and paperwork, ensuring a smooth and efficient process tailored to your business needs.',
     },
     {
       icon: 'assets/images/icon-paralegal.svg',
-      title: 'Paralegal',
-      content: 'Descrição detalhada do serviço 3.',
+      title: 'Paralegal Services',
+      content:
+        'Our paralegal services specialize in immigration processes, providing guidance and support for individuals navigating visa applications, residency permits, and other immigration-related matters. We ensure that you understand the requirements and assist you through each step of the process.',
     },
     {
       icon: 'assets/images/icon-boifincen.svg',
@@ -52,8 +54,9 @@ export class ServicesComponent {
     },
     {
       icon: 'assets/images/icon-works-compesation.svg',
-      title: 'Works Compesation',
-      content: 'Descrição detalhada do serviço 3.',
+      title: 'Workers’ Compensation Audits',
+      content:
+        'Our team conducts thorough workers’ compensation audits to ensure compliance with state regulations and accurate premium calculations. We help you identify potential savings and reduce your overall costs while maintaining proper coverage.',
     },
     {
       icon: 'assets/images/icon-1099.svg',
@@ -69,13 +72,15 @@ export class ServicesComponent {
     },
     {
       icon: 'assets/images/icon-extension.svg',
-      title: 'Extensão',
-      content: 'Descrição detalhada do serviço 3.',
+      title: 'Tax Extensions',
+      content:
+        'If you need more time to file your taxes, we can help you apply for a tax extension, giving you additional time to prepare and submit your returns without penalties.',
     },
     {
       icon: 'assets/images/icon-audit.svg',
-      title: 'Auditoria',
-      content: 'Descrição detalhada do serviço 3.',
+      title: 'IRS Dispute Resolution',
+      content:
+        'Facing an IRS dispute can be daunting. Our experts are here to assist you in resolving issues with the IRS, including audits, penalties, and collections. We advocate on your behalf, working to reach favorable outcomes and restore your peace of mind.',
     },
   ];
 
