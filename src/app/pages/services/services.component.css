@@ -1,0 +1,82 @@
+.hero {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  background: linear-gradient(
+      81deg,
+      rgba(0, 51, 153, 0.85),
+      rgba(0, 17, 51, 0.5)
+    ),
+    url(../../../assets/images/service.jpg) no-repeat center 80% / cover;
+  mix-blend-mode: multiply;
+}
+
+.hero-content {
+  position: absolute;
+  top: 32%;
+  left: 25%;
+  color: white;
+}
+
+.hero-content .hero-title {
+  width: 580px;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-content .hero-text {
+  width: 410px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.services {
+  width: 100%;
+  padding: 100px 0;
+}
+
+.services .content {
+  width: 960px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.accordion-header {
+  background-color: #f4f6f9;
+  cursor: pointer;
+  padding: 16px 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-content {
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.accordion-content.active {
+  max-height: 200px;
+  padding: 16px;
+}
+
+.accordion-content p {
+  margin: 0;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.active {
+  transform: rotate(180deg);
+}
