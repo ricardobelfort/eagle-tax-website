@@ -24,7 +24,6 @@ export class AppComponent {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.showBackToTop = window.scrollY > 300;
-    console.log(this.showBackToTop);
   }
 
   scrollToTop() {

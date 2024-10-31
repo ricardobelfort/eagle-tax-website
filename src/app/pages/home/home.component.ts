@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { RouterLink } from '@angular/router';
 import {
@@ -13,6 +19,8 @@ import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +34,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     NgxMaskDirective,
     NgxMaskPipe,
     SlickCarouselModule,
+    SweetAlert2Module,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -33,7 +42,17 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 export class HomeComponent implements OnInit {
   @ViewChild(ToastComponent) toast!: ToastComponent;
   contactForm!: FormGroup;
+  currentStep = 1;
+  progress = 0;
+  step1Form!: FormGroup;
+  step2Form!: FormGroup;
+  step3Form!: FormGroup;
+  step4Form!: FormGroup;
+  step5Form!: FormGroup;
+  step6Form!: FormGroup;
+  selectedOption!: string;
   private fb = inject(FormBuilder);
+  private cdr = inject(ChangeDetectorRef);
 
   slides = [
     {
@@ -69,6 +88,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.step1Form = this.fb.group({
+      option: ['', Validators.required],
+    });
+
+    this.step1Form.get('option')!.valueChanges.subscribe((value) => {
+      this.updateSelectedOption(value);
+      this.initializeForms(value);
+    });
+
     this.contactForm = this.fb.group({
       nome: [
         '',
@@ -99,6 +127,140 @@ export class HomeComponent implements OnInit {
         },
       ],
     });
+  }
+
+  initializeForms(option: string) {
+    if (option === '1') {
+      this.step2Form = this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+      });
+      this.step3Form = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+      });
+      this.step4Form = this.fb.group({
+        phone: ['', Validators.required],
+      });
+      this.step5Form = this.fb.group({
+        message: ['', Validators.required],
+      });
+    } else if (option === '2') {
+      // Inicialize os formulários para a opção 2
+      this.step2Form = this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+      });
+      this.step3Form = this.fb.group({
+        businessName: ['', Validators.required],
+      });
+      this.step4Form = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+      });
+      this.step5Form = this.fb.group({
+        phone: ['', Validators.required],
+      });
+      this.step6Form = this.fb.group({
+        message: ['', Validators.required],
+      });
+    } else if (option === '3') {
+      // Inicialize os formulários para a opção 3
+      this.step2Form = this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+      });
+      this.step3Form = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+      });
+      this.step4Form = this.fb.group({
+        phone: ['', Validators.required],
+      });
+      this.step5Form = this.fb.group({
+        message: ['', Validators.required],
+      });
+    }
+  }
+
+  nextStep() {
+    if (this.currentStep < 6) {
+      this.currentStep++;
+      this.updateProgress();
+    }
+  }
+
+  prevStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+      this.updateProgress();
+      this.cdr.detectChanges();
+    }
+  }
+
+  updateProgress() {
+    this.progress = (this.currentStep - 1) * 20;
+  }
+
+  updateSelectedOption(value: string) {
+    switch (value) {
+      case '1':
+        this.selectedOption = 'Impostos pessoais';
+        break;
+      case '2':
+        this.selectedOption = 'Impostos para pequenas empresas';
+        break;
+      case '3':
+        this.selectedOption = 'Começar um novo negócio';
+        break;
+      default:
+        this.selectedOption = '';
+    }
+  }
+
+  submitForm() {
+    if (
+      this.step1Form.valid &&
+      this.step2Form.valid &&
+      this.step3Form.valid &&
+      this.step4Form.valid &&
+      this.step5Form.valid &&
+      this.step6Form.valid
+    ) {
+      const formData = {
+        ...this.step1Form.value,
+        ...this.step2Form.value,
+        ...this.step3Form.value,
+        ...this.step4Form.value,
+        ...this.step5Form.value,
+        ...this.step6Form.value,
+      };
+
+      // Lógica para enviar o formulário, por exemplo, para um serviço ou API
+      console.log('Form Data:', formData);
+
+      Swal.fire({
+        title: 'Sucesso!',
+        text: 'Obrigado por suas informações! Entraremos em contato em breve para agendar uma consulta — pessoalmente ou por telefone, com base no que for mais conveniente para você.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+
+      // Resetar o formulário e voltar ao passo inicial
+      this.currentStep = 1;
+      this.progress = 0;
+      this.step1Form.reset();
+      this.step2Form.reset();
+      this.step3Form.reset();
+      this.step4Form.reset();
+      this.step5Form.reset();
+      this.step6Form.reset();
+    } else {
+      console.log('Formulário inválido');
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Por favor, preencha todos os campos corretamente.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
   }
 
   onSubmit() {

@@ -87,6 +87,12 @@
   gap: 50px;
 }
 
+.contact-content .contact-header {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+
 .contact-form {
   flex: 1;
 }

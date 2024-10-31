@@ -176,6 +176,67 @@
   gap: 16px;
 }
 
+.service-form .right .custom-form h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--tx-bold);
+}
+
+.service-form .right .custom-form h3 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--tx-bold);
+}
+
+.service-form .right .custom-form p {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--tx-color);
+  margin-top: -16px;
+}
+
+.service-form .right .custom-form .actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.service-form .right .custom-form button:disabled {
+  background-color: var(--inp-disabled);
+  color: var(--white-color);
+  cursor: not-allowed;
+}
+
+.service-form .right .custom-form button:disabled:hover {
+  background-color: var(--inp-disabled);
+  color: var(--white-color);
+  cursor: not-allowed;
+}
+
+.service-form .right .custom-form .btn-prev {
+  width: 36px;
+  height: 36px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  transition: background-color 0.3s, color 0.3s;
+  margin-right: 5px;
+}
+
+.service-form .right .custom-form .btn-prev:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.service-form .right .custom-form .btn-prev:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
 .service-form .right .custom-form label {
   width: 440px;
   height: 60px;
@@ -187,7 +248,7 @@
   align-items: center;
 }
 
-.service-form .right .custom-form label input[type="checkbox"] {
+.service-form .right .custom-form label input[type="radio"] {
   width: 33px;
   height: 33px;
   border-radius: 3px;
@@ -195,17 +256,34 @@
   margin-right: 20px;
 }
 
-.service-form .right .custom-form label input[type="checkbox"] {
+.service-form .right .custom-form label input[type="radio"] {
   accent-color: var(--inp-checked);
 }
 
-.service-form .right .custom-form .status {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
+.service-form .right .custom-form input[type="text"],
+.service-form .right .custom-form input[type="email"] {
+  width: 100%;
+  height: 52px;
+  border-radius: 3px;
+  border: 1px solid var(--inp-border);
+  padding: 16px;
 }
 
-.service-form .right .custom-form .status progress {
+.service-form .right .custom-form textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 3px;
+  border: 1px solid var(--inp-border);
+  padding: 16px;
+}
+
+.service-form .right .status {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.service-form .right .status progress {
   width: 190px;
   height: 14px;
   border-radius: 30px;
@@ -214,24 +292,24 @@
 }
 
 /* WebKit browsers (Chrome, Safari) */
-.service-form .right .custom-form .status progress::-webkit-progress-bar {
+.service-form .right .status progress::-webkit-progress-bar {
   background-color: #dedede;
   border-radius: 30px;
 }
 
-.service-form .right .custom-form .status progress::-webkit-progress-value {
+.service-form .right .status progress::-webkit-progress-value {
   background-color: #003399;
   border-radius: 30px;
 }
 
 /* Firefox */
-.service-form .right .custom-form .status progress::-moz-progress-bar {
+.service-form .right .status progress::-moz-progress-bar {
   background-color: #003399;
   border-radius: 30px;
 }
 
 /* Internet Explorer */
-.service-form .right .custom-form .status progress::-ms-fill {
+.service-form .right .status progress::-ms-fill {
   background-color: #003399;
   border-radius: 30px;
 }
