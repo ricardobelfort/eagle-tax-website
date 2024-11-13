@@ -82,6 +82,24 @@ export class ServicesComponent {
       content:
         'Facing an IRS dispute can be daunting. Our experts are here to assist you in resolving issues with the IRS, including audits, penalties, and collections. We advocate on your behalf, working to reach favorable outcomes and restore your peace of mind.',
     },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'International and Expatriate Taxes',
+      content:
+        'Our specialized services for international and expatriate clients address unique tax challenges, including compliance with U.S. tax laws and regulations. We help you understand your obligations while maximizing your benefits, ensuring a smooth tax experience whether you are living abroad or returning home.',
+    },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'Payroll Services',
+      content:
+        'We streamline your payroll process with our comprehensive payroll services, handling everything from payroll processing to tax withholdings. We ensure compliance with all payroll regulations, allowing you to focus on growing your business.',
+    },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'ITIN and CAA Services',
+      content:
+        'We offer ITIN (Individual Taxpayer Identification Number) services, authorized by the IRS to certify passports for the ITIN application process. Our Certified Acceptance Agents (CAAs) simplify the process, ensuring you receive your ITIN efficiently and accurately.',
+    },
   ];
 
   activeIndex: number | null = null;

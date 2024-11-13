@@ -37,16 +37,38 @@
   padding: 100px 0;
 }
 
+.services .services-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .services .content {
   width: 960px;
   margin: 0 auto;
   gap: 50px;
 }
 
+.services .content .services-header {
+  margin-bottom: 42px;
+}
+
+.services .content .services-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.services .content .services-header p {
+  text-align: justify;
+  margin-bottom: 18px;
+}
+
 .accordion-header {
-  background-color: #f4f6f9;
+  background-color: #fff;
   cursor: pointer;
-  padding: 16px 10px;
+  padding: 20px 10px;
   width: 100%;
   text-align: left;
   border: none;
