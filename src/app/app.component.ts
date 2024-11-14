@@ -1,8 +1,8 @@
-import { Component, HostListener } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +12,23 @@ import { CommonModule } from '@angular/common';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    RouterLink,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'eagletax-site';
   showBackToTop: boolean = false;
+  private router = inject(Router);
+  private viewportScroller = inject(ViewportScroller);
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.viewportScroller.scrollToPosition([0, 0]);
+      }
+    });
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

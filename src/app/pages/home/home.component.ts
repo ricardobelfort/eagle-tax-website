@@ -5,14 +5,14 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { NgxMaskDirective } from 'ngx-mask';
@@ -21,9 +21,6 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { environment } from '@environments/environment';
-import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
-
-declare const grecaptcha: any;
 
 @Component({
   selector: 'app-home',
@@ -36,8 +33,6 @@ declare const grecaptcha: any;
     NgxMaskDirective,
     SlickCarouselModule,
     SweetAlert2Module,
-    RecaptchaModule,
-    RecaptchaFormsModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -59,6 +54,7 @@ export class HomeComponent implements OnInit {
   private fb = inject(FormBuilder);
   private cdr = inject(ChangeDetectorRef);
   private router = inject(Router);
+  private viewportScroller = inject(ViewportScroller);
 
   slides = [
     {
@@ -176,6 +172,12 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.viewportScroller.scrollToPosition([0, 0]);
+      }
+    });
+    
     this.step1Form = this.fb.group({
       option: ['', Validators.required],
     });
@@ -215,23 +217,10 @@ export class HomeComponent implements OnInit {
         },
       ],
     });
-
-    this.loadRecaptchaScript();
-  }
-
-  loadRecaptchaScript() {
-    // Verifica se o script já está carregado
-    if (typeof grecaptcha === 'undefined') {
-      const script = document.createElement('script');
-      script.src = `https://www.google.com/recaptcha/api.js?render=${environment.reCaptchaSiteKey}`;
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-    }
   }
 
   initializeForms(option: string) {
-    if (option === '1') {
+    if (option === 'Personal Taxes') {
       this.step2Form = this.fb.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
@@ -245,7 +234,7 @@ export class HomeComponent implements OnInit {
       this.step5Form = this.fb.group({
         message: ['', Validators.required],
       });
-    } else if (option === '2') {
+    } else if (option === 'Small-Business Taxes') {
       // Inicialize os formulários para a opção 2
       this.step2Form = this.fb.group({
         firstName: ['', Validators.required],
@@ -263,7 +252,7 @@ export class HomeComponent implements OnInit {
       this.step6Form = this.fb.group({
         message: ['', Validators.required],
       });
-    } else if (option === '3') {
+    } else if (option === 'Start a Business') {
       // Inicialize os formulários para a opção 3
       this.step2Form = this.fb.group({
         firstName: ['', Validators.required],
@@ -302,13 +291,13 @@ export class HomeComponent implements OnInit {
 
   updateSelectedOption(value: string) {
     switch (value) {
-      case '1':
+      case 'Personal Taxes':
         this.selectedOption = 'Impostos pessoais';
         break;
-      case '2':
+      case 'Small-Business Taxes':
         this.selectedOption = 'Impostos para pequenas empresas';
         break;
-      case '3':
+      case 'Start a Business':
         this.selectedOption = 'Começar um novo negócio';
         break;
       default:
@@ -318,7 +307,7 @@ export class HomeComponent implements OnInit {
 
   submitForm() {
     let formData;
-
+  
     if (
       this.selectedOption === 'Impostos pessoais' ||
       this.selectedOption === 'Começar um novo negócio'
@@ -331,7 +320,7 @@ export class HomeComponent implements OnInit {
         this.step5Form.valid
       ) {
         formData = {
-          ...this.step1Form.value,
+          ...this.step1Form.value,  // Inclui a opção selecionada
           ...this.step2Form.value,
           ...this.step3Form.value,
           ...this.step4Form.value,
@@ -356,7 +345,7 @@ export class HomeComponent implements OnInit {
         this.step6Form.valid
       ) {
         formData = {
-          ...this.step1Form.value,
+          ...this.step1Form.value,  // Inclui a opção selecionada
           ...this.step2Form.value,
           ...this.step3Form.value,
           ...this.step4Form.value,
@@ -373,45 +362,46 @@ export class HomeComponent implements OnInit {
         return;
       }
     }
-
-    Swal.fire({
-      title: 'Sucesso!',
-      text: 'Obrigado por suas informações! Entraremos em contato em breve.',
-      icon: 'success',
-      confirmButtonText: 'OK',
-    });
-
-    // Resetar o formulário e voltar ao passo inicial
-    this.currentStep = 1;
-    this.progress = 0;
-    this.step1Form.reset();
-    this.step2Form.reset();
-    this.step3Form.reset();
-    this.step4Form.reset();
-    this.step5Form.reset();
-    if (this.step6Form) this.step6Form.reset();
-    return;
-  }
-
-  // sendEmail(e: Event) {
-  //   e.preventDefault();
-
-  //   emailjs
-  //     .sendForm(
-  //       environment.emailjsServiceId,
-  //       environment.emailjsTemplateId,
-  //       e.target as HTMLFormElement,
-  //       environment.emailjsUserId
-  //     )
-  //     .then(
-  //       () => {
-  //         console.log('SUCCESS!');
-  //       },
-  //       (error) => {
-  //         console.log('FAILED...', (error as EmailJSResponseStatus).text);
-  //       }
-  //     );
-  // }
+  
+    // Envio do formulário via EmailJS
+    emailjs
+      .send(
+        environment.emailjsServiceId,
+        environment.emailjsHelpTemplateId,
+        formData,
+        environment.emailjsUserId
+      )
+      .then(
+        (response: EmailJSResponseStatus) => {
+          console.log('SUCCESS!', response.status, response.text);
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Obrigado por suas informações! Entraremos em contato em breve.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+  
+          // Resetar o formulário e voltar ao passo inicial
+          this.currentStep = 1;
+          this.progress = 0;
+          this.step1Form.reset();
+          this.step2Form.reset();
+          this.step3Form.reset();
+          this.step4Form.reset();
+          this.step5Form.reset();
+          if (this.step6Form) this.step6Form.reset();
+        },
+        (error) => {
+          console.error('FAILED...', error);
+          Swal.fire({
+            title: 'Erro!',
+            text: 'Erro ao enviar o formulário. Tente novamente.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+      );
+  }  
 
   onSubmit() {
     if (this.contactForm.valid) {
@@ -421,7 +411,7 @@ export class HomeComponent implements OnInit {
         telefone: this.contactForm.get('telefone')?.value,
         mensagem: this.contactForm.get('mensagem')?.value,
       };
-  
+
       emailjs
         .send(
           environment.emailjsServiceId,
@@ -436,7 +426,7 @@ export class HomeComponent implements OnInit {
               title: 'Sucesso!',
               text: 'Formulário enviado com sucesso!',
               icon: 'success',
-              confirmButtonText: 'OK'
+              confirmButtonText: 'OK',
             });
             this.contactForm.reset();
             this.contactForm.markAsPristine();
@@ -448,7 +438,7 @@ export class HomeComponent implements OnInit {
               title: 'Erro!',
               text: 'Erro ao enviar o formulário. Tente novamente.',
               icon: 'error',
-              confirmButtonText: 'OK'
+              confirmButtonText: 'OK',
             });
           }
         );
@@ -457,7 +447,7 @@ export class HomeComponent implements OnInit {
         title: 'Atenção!',
         text: 'Por favor, preencha todos os campos corretamente.',
         icon: 'warning',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
       });
     }
   }
