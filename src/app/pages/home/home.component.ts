@@ -377,58 +377,60 @@ export class HomeComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const templateParams: { [key: string]: any } = {
+      const templateParams: { nome: any; email: any; telefone: any; messagem: any; 'g-recaptcha-response'?: string } = {
         nome: this.contactForm.get('nome')?.value,
         email: this.contactForm.get('email')?.value,
         telefone: this.contactForm.get('telefone')?.value,
         messagem: this.contactForm.get('messagem')?.value,
       };
   
-      // Verifica se o `grecaptcha` está disponível antes de usar
-      if (typeof this.grecaptcha !== 'undefined') {
-        this.grecaptcha.ready(() => {
-          this.grecaptcha.execute(environment.reCaptchaSiteKey, { action: 'submit' }).then((token: string) => {
-            // Inclua o token reCAPTCHA no templateParams
-            templateParams[environment.reCaptchaSiteKey] = token;
+      // Função auxiliar para aguardar o carregamento do grecaptcha
+      const executeRecaptcha = () => {
+        if (typeof this.grecaptcha !== 'undefined' && this.grecaptcha.execute) {
+          this.grecaptcha.ready(() => {
+            this.grecaptcha.execute(environment.reCaptchaSiteKey, { action: 'submit' }).then((token: string) => {
+              // Inclua o token reCAPTCHA no templateParams
+              templateParams['g-recaptcha-response'] = token;
   
-            emailjs
-              .send(
-                environment.emailjsServiceId,
-                environment.emailjsTemplateId,
-                templateParams,
-                environment.emailjsUserId
-              )
-              .then(
-                (response: EmailJSResponseStatus) => {
-                  console.log('SUCCESS!', response.status, response.text);
-                  this.toast.message = 'Formulário enviado com sucesso!';
-                  this.toast.type = 'success';
-                  this.toast.show();
-                  this.contactForm.reset();
-                  this.contactForm.markAsPristine();
-                  this.contactForm.markAsUntouched();
-                },
-                (error) => {
-                  console.error('FAILED...', error);
-                  this.toast.message = 'Erro ao enviar o formulário. Tente novamente.';
-                  this.toast.type = 'error';
-                  this.toast.show();
-                }
-              );
+              emailjs
+                .send(
+                  environment.emailjsServiceId,
+                  environment.emailjsTemplateId,
+                  templateParams,
+                  environment.emailjsUserId
+                )
+                .then(
+                  (response: EmailJSResponseStatus) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                    this.toast.message = 'Formulário enviado com sucesso!';
+                    this.toast.type = 'success';
+                    this.toast.show();
+                    this.contactForm.reset();
+                    this.contactForm.markAsPristine();
+                    this.contactForm.markAsUntouched();
+                  },
+                  (error) => {
+                    console.error('FAILED...', error);
+                    this.toast.message = 'Erro ao enviar o formulário. Tente novamente.';
+                    this.toast.type = 'error';
+                    this.toast.show();
+                  }
+                );
+            });
           });
-        });
-      } else {
-        console.error('grecaptcha não está disponível.');
-        this.toast.message = 'Erro ao carregar o reCAPTCHA. Tente novamente.';
-        this.toast.type = 'error';
-        this.toast.show();
-      }
+        } else {
+          console.error('grecaptcha não está disponível. Tentando novamente em 500ms');
+          setTimeout(executeRecaptcha, 500); // Tenta novamente após 500ms
+        }
+      };
+  
+      executeRecaptcha();
     } else {
       this.toast.message = 'Por favor, preencha todos os campos corretamente.';
       this.toast.type = 'error';
       this.toast.show();
     }
-  }  
+  }
 
   navigateToService(index: number): void {
     this.router.navigate(['/services'], { queryParams: { index } });
