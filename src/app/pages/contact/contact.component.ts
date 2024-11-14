@@ -8,8 +8,10 @@ import {
 } from '@angular/forms';
 import { ToastComponent } from '@app/shared/components/toast/toast.component';
 import { SharedModule } from '@app/shared/shared.module';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { NgxMaskDirective } from 'ngx-mask';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import Swal from 'sweetalert2';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -19,7 +21,6 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
     ReactiveFormsModule,
     SharedModule,
     NgxMaskDirective,
-    NgxMaskPipe,
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
@@ -52,7 +53,7 @@ export class ContactComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
-      messagem: [
+      mensagem: [
         '',
         {
           validators: [Validators.required, Validators.minLength(10)],
@@ -64,44 +65,49 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const templateParams = {
+      const templateParams: { [key: string]: any } = {
         nome: this.contactForm.get('nome')?.value,
         email: this.contactForm.get('email')?.value,
         telefone: this.contactForm.get('telefone')?.value,
-        messagem: this.contactForm.get('messagem')?.value,
+        mensagem: this.contactForm.get('mensagem')?.value,
       };
-
+  
       emailjs
         .send(
-          'YOUR_SERVICE_ID',
-          'YOUR_TEMPLATE_ID',
+          environment.emailjsServiceId,
+          environment.emailjsTemplateId,
           templateParams,
-          'YOUR_USER_ID'
+          environment.emailjsUserId
         )
         .then(
           (response: EmailJSResponseStatus) => {
-            console.log('SUCCESS!', response.status, response.text);
-            // Exibir mensagem de sucesso
-            this.toast.message = 'Formulário enviado com sucesso!';
-            this.toast.type = 'success';
-            this.toast.show();
-            // Resetar o formulário após o envio bem-sucedido
+            Swal.fire({
+              title: 'Sucesso!',
+              text: 'Formulário enviado com sucesso!',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
             this.contactForm.reset();
+            this.contactForm.markAsPristine();
+            this.contactForm.markAsUntouched();
           },
-          (error: any) => {
-            console.log('FAILED...', error);
-            // Exibir mensagem de erro
-            this.toast.message =
-              'Erro ao enviar o formulário. Verifique os campos.';
-            this.toast.type = 'error';
-            this.toast.show();
+          (error) => {
+            console.error('FAILED...', error);
+            Swal.fire({
+              title: 'Erro!',
+              text: 'Erro ao enviar o formulário. Tente novamente.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
           }
         );
     } else {
-      // Exibir mensagem de erro
-      this.toast.message = 'Erro ao enviar o formulário. Verifique os campos.';
-      this.toast.type = 'error';
-      this.toast.show();
+      Swal.fire({
+        title: 'Atenção!',
+        text: 'Por favor, preencha todos os campos corretamente.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
     }
   }
 }

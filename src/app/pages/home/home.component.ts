@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { NgxMaskDirective } from 'ngx-mask';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
@@ -37,7 +37,7 @@ declare const grecaptcha: any;
     SlickCarouselModule,
     SweetAlert2Module,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -207,7 +207,7 @@ export class HomeComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
-      messagem: [
+      mensagem: [
         '',
         {
           validators: [Validators.required, Validators.minLength(10)],
@@ -393,77 +393,75 @@ export class HomeComponent implements OnInit {
     return;
   }
 
+  // sendEmail(e: Event) {
+  //   e.preventDefault();
+
+  //   emailjs
+  //     .sendForm(
+  //       environment.emailjsServiceId,
+  //       environment.emailjsTemplateId,
+  //       e.target as HTMLFormElement,
+  //       environment.emailjsUserId
+  //     )
+  //     .then(
+  //       () => {
+  //         console.log('SUCCESS!');
+  //       },
+  //       (error) => {
+  //         console.log('FAILED...', (error as EmailJSResponseStatus).text);
+  //       }
+  //     );
+  // }
+
   onSubmit() {
     if (this.contactForm.valid) {
       const templateParams: { [key: string]: any } = {
         nome: this.contactForm.get('nome')?.value,
         email: this.contactForm.get('email')?.value,
         telefone: this.contactForm.get('telefone')?.value,
-        messagem: this.contactForm.get('messagem')?.value,
+        mensagem: this.contactForm.get('mensagem')?.value,
       };
   
-      // Verifique se o grecaptcha está disponível antes de usá-lo
-      if (typeof grecaptcha !== 'undefined' && grecaptcha.ready) {
-        console.log('grecaptcha disponível, preparando para gerar o token...');
-        
-        grecaptcha.ready(() => {
-          grecaptcha.execute(environment.reCaptchaSiteKey, { action: 'submit' }).then((token: string) => {
-            if (token) {
-              // Adiciona o token reCAPTCHA ao templateParams
-              templateParams['g-recaptcha-response'] = token;
-              console.log('Token gerado:', token);
-  
-              // Envio do email após o token estar presente
-              emailjs
-                .send(
-                  environment.emailjsServiceId,
-                  environment.emailjsTemplateId,
-                  templateParams,
-                  environment.emailjsUserId
-                )
-                .then(
-                  (response: EmailJSResponseStatus) => {
-                    console.log('SUCCESS!', response.status, response.text);
-                    this.toast.message = 'Formulário enviado com sucesso!';
-                    this.toast.type = 'success';
-                    this.toast.show();
-                    this.contactForm.reset();
-                    this.contactForm.markAsPristine();
-                    this.contactForm.markAsUntouched();
-                  },
-                  (error) => {
-                    console.error('FAILED...', error);
-                    this.toast.message = 'Erro ao enviar o formulário. Tente novamente.';
-                    this.toast.type = 'error';
-                    this.toast.show();
-                  }
-                );
-            } else {
-              console.error('Token do reCAPTCHA não foi gerado.');
-              this.toast.message = 'Erro ao gerar o token do reCAPTCHA. Tente novamente.';
-              this.toast.type = 'error';
-              this.toast.show();
-            }
-          }).catch((error: any) => {
-            console.error('Erro ao executar o reCAPTCHA:', error);
-            this.toast.message = 'Erro ao executar o reCAPTCHA. Tente novamente.';
-            this.toast.type = 'error';
-            this.toast.show();
-          });
-        });
-      } else {
-        console.error('grecaptcha não está disponível.');
-        this.toast.message = 'Erro ao carregar o reCAPTCHA. Tente novamente.';
-        this.toast.type = 'error';
-        this.toast.show();
-      }
+      emailjs
+        .send(
+          environment.emailjsServiceId,
+          environment.emailjsTemplateId,
+          templateParams,
+          environment.emailjsUserId
+        )
+        .then(
+          (response: EmailJSResponseStatus) => {
+            console.log('SUCCESS!', response.status, response.text);
+            Swal.fire({
+              title: 'Sucesso!',
+              text: 'Formulário enviado com sucesso!',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+            this.contactForm.reset();
+            this.contactForm.markAsPristine();
+            this.contactForm.markAsUntouched();
+          },
+          (error) => {
+            console.error('FAILED...', error);
+            Swal.fire({
+              title: 'Erro!',
+              text: 'Erro ao enviar o formulário. Tente novamente.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+        );
     } else {
-      this.toast.message = 'Por favor, preencha todos os campos corretamente.';
-      this.toast.type = 'error';
-      this.toast.show();
+      Swal.fire({
+        title: 'Atenção!',
+        text: 'Por favor, preencha todos os campos corretamente.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
     }
   }
-  
+
   navigateToService(index: number): void {
     this.router.navigate(['/services'], { queryParams: { index } });
   }

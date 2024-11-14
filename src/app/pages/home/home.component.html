@@ -661,32 +661,32 @@
               >
             </div>
           </label>
-          <label for="messagem">
+          <label for="mensagem">
             Mensagem
             <textarea
-              name="messagem"
-              id="messagem"
-              formControlName="messagem"
+              name="mensagem"
+              id="mensagem"
+              formControlName="mensagem"
               placeholder="Mensagem"
               rows="5"
               [ngClass]="{
                 'is-invalid':
-                  contactForm.get('messagem')?.invalid &&
-                  contactForm.get('messagem')?.touched
+                  contactForm.get('mensagem')?.invalid &&
+                  contactForm.get('mensagem')?.touched
               }"
               required
             ></textarea>
             <div
               *ngIf="
-                contactForm.get('messagem')?.invalid &&
-                contactForm.get('messagem')?.touched
+                contactForm.get('mensagem')?.invalid &&
+                contactForm.get('mensagem')?.touched
               "
               class="error-message"
             >
-              <small *ngIf="contactForm.get('messagem')?.errors?.['required']"
+              <small *ngIf="contactForm.get('mensagem')?.errors?.['required']"
                 >Mensagem é obrigatória.</small
               >
-              <small *ngIf="contactForm.get('messagem')?.errors?.['minlength']"
+              <small *ngIf="contactForm.get('mensagem')?.errors?.['minlength']"
                 >Mensagem deve ter pelo menos 10 caracteres.</small
               >
             </div>
