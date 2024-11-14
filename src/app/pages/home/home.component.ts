@@ -21,6 +21,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { environment } from '@environments/environment';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+
+declare const grecaptcha: any;
 
 @Component({
   selector: 'app-home',
@@ -33,6 +36,8 @@ import { environment } from '@environments/environment';
     NgxMaskDirective,
     SlickCarouselModule,
     SweetAlert2Module,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -210,6 +215,19 @@ export class HomeComponent implements OnInit {
         },
       ],
     });
+
+    this.loadRecaptchaScript();
+  }
+
+  loadRecaptchaScript() {
+    // Verifica se o script já está carregado
+    if (typeof grecaptcha === 'undefined') {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${environment.reCaptchaSiteKey}`;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
   }
 
   initializeForms(option: string) {
@@ -377,21 +395,25 @@ export class HomeComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const templateParams: { nome: any; email: any; telefone: any; messagem: any; 'g-recaptcha-response'?: string } = {
+      const templateParams: { [key: string]: any } = {
         nome: this.contactForm.get('nome')?.value,
         email: this.contactForm.get('email')?.value,
         telefone: this.contactForm.get('telefone')?.value,
         messagem: this.contactForm.get('messagem')?.value,
       };
   
-      // Função auxiliar para aguardar o carregamento do grecaptcha
-      const executeRecaptcha = () => {
-        if (typeof this.grecaptcha !== 'undefined' && this.grecaptcha.execute) {
-          this.grecaptcha.ready(() => {
-            this.grecaptcha.execute(environment.reCaptchaSiteKey, { action: 'submit' }).then((token: string) => {
-              // Inclua o token reCAPTCHA no templateParams
+      // Verifique se o grecaptcha está disponível antes de usá-lo
+      if (typeof grecaptcha !== 'undefined' && grecaptcha.ready) {
+        console.log('grecaptcha disponível, preparando para gerar o token...');
+        
+        grecaptcha.ready(() => {
+          grecaptcha.execute(environment.reCaptchaSiteKey, { action: 'submit' }).then((token: string) => {
+            if (token) {
+              // Adiciona o token reCAPTCHA ao templateParams
               templateParams['g-recaptcha-response'] = token;
+              console.log('Token gerado:', token);
   
+              // Envio do email após o token estar presente
               emailjs
                 .send(
                   environment.emailjsServiceId,
@@ -416,22 +438,32 @@ export class HomeComponent implements OnInit {
                     this.toast.show();
                   }
                 );
-            });
+            } else {
+              console.error('Token do reCAPTCHA não foi gerado.');
+              this.toast.message = 'Erro ao gerar o token do reCAPTCHA. Tente novamente.';
+              this.toast.type = 'error';
+              this.toast.show();
+            }
+          }).catch((error: any) => {
+            console.error('Erro ao executar o reCAPTCHA:', error);
+            this.toast.message = 'Erro ao executar o reCAPTCHA. Tente novamente.';
+            this.toast.type = 'error';
+            this.toast.show();
           });
-        } else {
-          console.error('grecaptcha não está disponível. Tentando novamente em 500ms');
-          setTimeout(executeRecaptcha, 500); // Tenta novamente após 500ms
-        }
-      };
-  
-      executeRecaptcha();
+        });
+      } else {
+        console.error('grecaptcha não está disponível.');
+        this.toast.message = 'Erro ao carregar o reCAPTCHA. Tente novamente.';
+        this.toast.type = 'error';
+        this.toast.show();
+      }
     } else {
       this.toast.message = 'Por favor, preencha todos os campos corretamente.';
       this.toast.type = 'error';
       this.toast.show();
     }
   }
-
+  
   navigateToService(index: number): void {
     this.router.navigate(['/services'], { queryParams: { index } });
   }
