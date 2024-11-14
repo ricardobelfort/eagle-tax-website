@@ -5,8 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -16,7 +15,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -27,12 +26,10 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [
     CommonModule,
-    HeaderComponent,
     RouterLink,
     ReactiveFormsModule,
     SharedModule,
     NgxMaskDirective,
-    NgxMaskPipe,
     SlickCarouselModule,
     SweetAlert2Module,
   ],
@@ -53,6 +50,7 @@ export class HomeComponent implements OnInit {
   selectedOption!: string;
   private fb = inject(FormBuilder);
   private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
 
   slides = [
     {
@@ -86,6 +84,88 @@ export class HomeComponent implements OnInit {
   slickInit() {
     console.log('slick initialized');
   }
+
+  items = [
+    {
+      icon: 'assets/images/icon-tax.svg',
+      title: 'Tax Return Preparation',
+      content: 'We provide comprehensive tax return preparation services',
+    },
+    {
+      icon: 'assets/images/icon-bookkeeping.svg',
+      title: 'Bookkeeping',
+      content: 'We offer meticulous bookkeeping and accounting services',
+    },
+    {
+      icon: 'assets/images/icon-corporate.svg',
+      title: 'Corporate Services',
+      content: 'We offer comprehensive corporate services',
+    },
+    {
+      icon: 'assets/images/icon-paralegal.svg',
+      title: 'Paralegal Services',
+      content: 'Our paralegal services specialize in immigration processes',
+    },
+    {
+      icon: 'assets/images/icon-boifincen.svg',
+      title: 'BOI Reporting',
+      content:
+        'We assist clients in filing the Beneficial Ownership Information (BOI)',
+    },
+    {
+      icon: 'assets/images/icon-anual-report.svg',
+      title: 'Annual Reports',
+      content: 'We assist with the preparation and filing of annual reports',
+    },
+    {
+      icon: 'assets/images/icon-sales-tax.svg',
+      title: 'Sales Tax Compliance',
+      content: 'Navigating sales tax regulations can be complex',
+    },
+    {
+      icon: 'assets/images/icon-works-compesation.svg',
+      title: "Worker's Audits",
+      content: 'Our team conducts thorough workers’ compensation audits',
+    },
+    {
+      icon: 'assets/images/icon-1099.svg',
+      title: '1099 Reporting',
+      content: 'We handle 1099 reports to the IRS',
+    },
+    {
+      icon: 'assets/images/icon-notary.svg',
+      title: 'Notary Services',
+      content: 'Our notary services are available to authenticate documents',
+    },
+    {
+      icon: 'assets/images/icon-extension.svg',
+      title: 'Tax Extensions',
+      content: 'If you need more time to file your taxes',
+    },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'IRS Dispute Resolution',
+      content: 'Facing an IRS dispute can be daunting',
+    },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'International and Expatriate',
+      content:
+        'Our specialized services for international and expatriate clients',
+    },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'Payroll Services',
+      content:
+        'We streamline your payroll process with our comprehensive payroll services',
+    },
+    {
+      icon: 'assets/images/icon-audit.svg',
+      title: 'ITIN and CAA Services',
+      content:
+        'We offer ITIN (Individual Taxpayer Identification Number) services',
+    },
+  ];
 
   ngOnInit(): void {
     this.step1Form = this.fb.group({
@@ -304,5 +384,9 @@ export class HomeComponent implements OnInit {
       this.toast.type = 'error';
       this.toast.show();
     }
+  }
+
+  navigateToService(index: number): void {
+    this.router.navigate(['/services'], { queryParams: { index } });
   }
 }

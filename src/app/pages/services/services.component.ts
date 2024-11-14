@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-services',
@@ -8,7 +14,7 @@ import { Component } from '@angular/core';
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit, AfterViewInit {
   items = [
     {
       icon: 'assets/images/icon-tax.svg',
@@ -103,6 +109,33 @@ export class ServicesComponent {
   ];
 
   activeIndex: number | null = null;
+
+  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const index = +params['index'];
+      if (!isNaN(index)) {
+        this.activeIndex = index;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Defina o scroll para o acordeão específico após um delay
+    setTimeout(() => {
+      if (this.activeIndex !== null) {
+        const accordionElement = document.getElementById(
+          `accordion-item-${this.activeIndex}`
+        );
+        accordionElement?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+        this.cdr.detectChanges();
+      }
+    }, 300); // Ajuste o delay se necessário
+  }
 
   toggleAccordion(index: number): void {
     this.activeIndex = this.activeIndex === index ? null : index;

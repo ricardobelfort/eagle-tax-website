@@ -480,87 +480,14 @@
       </p>
     </header>
     <div class="content-grid">
-      <div class="item">
-        <img src="assets/images/icon-tax.svg" alt="" />
-        <h3>Tax Return Preparation</h3>
-        <p>We provide comprehensive tax return preparation services</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-bookkeeping.svg" alt="" />
-        <h3>Bookkeeping</h3>
-        <p>We offer meticulous bookkeeping and accounting services</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-corporate.svg" alt="" />
-        <h3>Corporate Services</h3>
-        <p>We offer comprehensive corporate services</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-paralegal.svg" alt="" />
-        <h3>Paralegal Services</h3>
-        <p>Our paralegal services specialize in immigration processes</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-boifincen.svg" alt="" />
-        <h3>BOI Reporting</h3>
-        <p>
-          We assist clients in filing the Beneficial Ownership Information (BOI)
-        </p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-anual-report.svg" alt="" />
-        <h3>Annual Reports</h3>
-        <p>We assist with the preparation and filing of annual reports</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-sales-tax.svg" alt="" />
-        <h3>Sales Tax Compliance</h3>
-        <p>Navigating sales tax regulations can be complex</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-works-compesation.svg" alt="" />
-        <h3>Worker's Audits</h3>
-        <p>Our team conducts thorough workers’ compensation audits</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-1099.svg" alt="" />
-        <h3>1099 Reporting</h3>
-        <p>We handle 1099 reports to the IRS</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-notary.svg" alt="" />
-        <h3>Notary Services</h3>
-        <p>Our notary services are available to authenticate documents</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-extension.svg" alt="" />
-        <h3>Tax Extensions</h3>
-        <p>If you need more time to file your taxes</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-audit.svg" alt="" />
-        <h3>IRS Dispute Resolution</h3>
-        <p>Facing an IRS dispute can be daunting</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-audit.svg" alt="" />
-        <h3>International and Expatriate</h3>
-        <p>Our specialized services for international and expatriate clients</p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-audit.svg" alt="" />
-        <h3>Payroll Services</h3>
-        <p>
-          We streamline your payroll process with our comprehensive payroll
-          services
-        </p>
-      </div>
-      <div class="item">
-        <img src="assets/images/icon-audit.svg" alt="" />
-        <h3>ITIN and CAA Services</h3>
-        <p>
-          We offer ITIN (Individual Taxpayer Identification Number) services
-        </p>
+      <div
+        class="item"
+        *ngFor="let item of items; let i = index"
+        (click)="navigateToService(i)"
+      >
+        <img [src]="item.icon" alt="" />
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.content }}</p>
       </div>
     </div>
   </section>

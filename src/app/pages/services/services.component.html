@@ -32,16 +32,18 @@
           seu sucesso.
         </p>
       </article>
+
       <div class="accordion">
-        <div class="accordion-item" *ngFor="let item of items; let i = index">
+        <div
+          class="accordion-item"
+          *ngFor="let item of items; let i = index"
+          [id]="'accordion-item-' + i"
+        >
           <button class="accordion-header" (click)="toggleAccordion(i)">
             <div style="display: flex; align-items: center">
               <img [src]="item.icon" width="32" alt="" />
-              <h1 style="margin-left: 7px">
-                {{ item.title }}
-              </h1>
+              <h1 style="margin-left: 7px">{{ item.title }}</h1>
             </div>
-
             <span class="arrow" [ngClass]="{ active: activeIndex === i }">
               <img src="assets/images/icon-arrow-down.svg" width="16" alt="" />
             </span>
