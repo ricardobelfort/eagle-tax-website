@@ -20,6 +20,7 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -48,6 +49,8 @@ export class HomeComponent implements OnInit {
   step5Form!: FormGroup;
   step6Form!: FormGroup;
   selectedOption!: string;
+  grecaptcha: any;
+
   private fb = inject(FormBuilder);
   private cdr = inject(ChangeDetectorRef);
   private router = inject(Router);
@@ -296,95 +299,136 @@ export class HomeComponent implements OnInit {
   }
 
   submitForm() {
+    let formData;
+
     if (
-      this.step1Form.valid &&
-      this.step2Form.valid &&
-      this.step3Form.valid &&
-      this.step4Form.valid &&
-      this.step5Form.valid &&
-      this.step6Form.valid
+      this.selectedOption === 'Impostos pessoais' ||
+      this.selectedOption === 'Começar um novo negócio'
     ) {
-      const formData = {
-        ...this.step1Form.value,
-        ...this.step2Form.value,
-        ...this.step3Form.value,
-        ...this.step4Form.value,
-        ...this.step5Form.value,
-        ...this.step6Form.value,
-      };
-
-      // Lógica para enviar o formulário, por exemplo, para um serviço ou API
-      console.log('Form Data:', formData);
-
-      Swal.fire({
-        title: 'Sucesso!',
-        text: 'Obrigado por suas informações! Entraremos em contato em breve para agendar uma consulta — pessoalmente ou por telefone, com base no que for mais conveniente para você.',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-
-      // Resetar o formulário e voltar ao passo inicial
-      this.currentStep = 1;
-      this.progress = 0;
-      this.step1Form.reset();
-      this.step2Form.reset();
-      this.step3Form.reset();
-      this.step4Form.reset();
-      this.step5Form.reset();
-      this.step6Form.reset();
-    } else {
-      console.log('Formulário inválido');
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Por favor, preencha todos os campos corretamente.',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
+      if (
+        this.step1Form.valid &&
+        this.step2Form.valid &&
+        this.step3Form.valid &&
+        this.step4Form.valid &&
+        this.step5Form.valid
+      ) {
+        formData = {
+          ...this.step1Form.value,
+          ...this.step2Form.value,
+          ...this.step3Form.value,
+          ...this.step4Form.value,
+          ...this.step5Form.value,
+        };
+      } else {
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Por favor, preencha todos os campos corretamente.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
+    } else if (this.selectedOption === 'Impostos para pequenas empresas') {
+      if (
+        this.step1Form.valid &&
+        this.step2Form.valid &&
+        this.step3Form.valid &&
+        this.step4Form.valid &&
+        this.step5Form.valid &&
+        this.step6Form.valid
+      ) {
+        formData = {
+          ...this.step1Form.value,
+          ...this.step2Form.value,
+          ...this.step3Form.value,
+          ...this.step4Form.value,
+          ...this.step5Form.value,
+          ...this.step6Form.value,
+        };
+      } else {
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Por favor, preencha todos os campos corretamente.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
     }
+
+    Swal.fire({
+      title: 'Sucesso!',
+      text: 'Obrigado por suas informações! Entraremos em contato em breve.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
+
+    // Resetar o formulário e voltar ao passo inicial
+    this.currentStep = 1;
+    this.progress = 0;
+    this.step1Form.reset();
+    this.step2Form.reset();
+    this.step3Form.reset();
+    this.step4Form.reset();
+    this.step5Form.reset();
+    if (this.step6Form) this.step6Form.reset();
+    return;
   }
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const templateParams = {
+      const templateParams: { [key: string]: any } = {
         nome: this.contactForm.get('nome')?.value,
         email: this.contactForm.get('email')?.value,
         telefone: this.contactForm.get('telefone')?.value,
         messagem: this.contactForm.get('messagem')?.value,
       };
-
-      emailjs
-        .send(
-          'YOUR_SERVICE_ID',
-          'YOUR_TEMPLATE_ID',
-          templateParams,
-          'YOUR_USER_ID'
-        )
-        .then(
-          (response: EmailJSResponseStatus) => {
-            console.log('SUCCESS!', response.status, response.text);
-            // Exibir mensagem de sucesso
-            this.toast.message = 'Formulário enviado com sucesso!';
-            this.toast.type = 'success';
-            this.toast.show();
-            // Resetar o formulário após o envio bem-sucedido
-            this.contactForm.reset();
-          },
-          (error) => {
-            console.log('FAILED...', error);
-            // Exibir mensagem de erro
-            this.toast.message =
-              'Erro ao enviar o formulário. Verifique os campos.';
-            this.toast.type = 'error';
-            this.toast.show();
-          }
-        );
+  
+      // Verifica se o `grecaptcha` está disponível antes de usar
+      if (typeof this.grecaptcha !== 'undefined') {
+        this.grecaptcha.ready(() => {
+          this.grecaptcha.execute(environment.reCaptchaSiteKey, { action: 'submit' }).then((token: string) => {
+            // Inclua o token reCAPTCHA no templateParams
+            templateParams[environment.reCaptchaSiteKey] = token;
+  
+            emailjs
+              .send(
+                environment.emailjsServiceId,
+                environment.emailjsTemplateId,
+                templateParams,
+                environment.emailjsUserId
+              )
+              .then(
+                (response: EmailJSResponseStatus) => {
+                  console.log('SUCCESS!', response.status, response.text);
+                  this.toast.message = 'Formulário enviado com sucesso!';
+                  this.toast.type = 'success';
+                  this.toast.show();
+                  this.contactForm.reset();
+                  this.contactForm.markAsPristine();
+                  this.contactForm.markAsUntouched();
+                },
+                (error) => {
+                  console.error('FAILED...', error);
+                  this.toast.message = 'Erro ao enviar o formulário. Tente novamente.';
+                  this.toast.type = 'error';
+                  this.toast.show();
+                }
+              );
+          });
+        });
+      } else {
+        console.error('grecaptcha não está disponível.');
+        this.toast.message = 'Erro ao carregar o reCAPTCHA. Tente novamente.';
+        this.toast.type = 'error';
+        this.toast.show();
+      }
     } else {
-      // Exibir mensagem de erro
-      this.toast.message = 'Erro ao enviar o formulário. Verifique os campos.';
+      this.toast.message = 'Por favor, preencha todos os campos corretamente.';
       this.toast.type = 'error';
       this.toast.show();
     }
-  }
+  }  
 
   navigateToService(index: number): void {
     this.router.navigate(['/services'], { queryParams: { index } });
