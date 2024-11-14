@@ -256,5 +256,19 @@
     />
   </section>
 
-  <section class="testimonials"></section>
+  <section class="testimonials">
+    <h2 class="testimonials-title">Cases de sucesso</h2>
+    <div class="testimonials-carousel">
+      <button class="carousel-nav prev" (click)="scrollLeft()">&#10094;</button>
+      <div class="testimonials-container" #testimonialContainer>
+        <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+          <img [src]="testimonial.image" [alt]="'Foto de ' + testimonial.name" class="testimonial-image" />
+          <p class="testimonial-quote">{{ testimonial.quote }}</p>
+          <p class="testimonial-name">{{ testimonial.name }}</p>
+          <p class="testimonial-position">{{ testimonial.position }}</p>
+        </div>
+      </div>
+      <button class="carousel-nav next" (click)="scrollRight()">&#10095;</button>
+    </div>
+  </section>  
 </main>

@@ -213,3 +213,115 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+.testimonials {
+  padding: 100px 0;
+  text-align: center;
+  background-color: #fff;
+  position: relative;
+}
+
+.testimonials-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.testimonials-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 60px; /* Espaço extra para as setas */
+  box-sizing: border-box;
+}
+
+.carousel-nav {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+}
+
+.prev {
+  left: 10px; /* Ajuste para manter a seta fora do contêiner */
+}
+
+.next {
+  right: 10px; /* Ajuste para manter a seta fora do contêiner */
+}
+
+.testimonials-container {
+  display: flex;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.testimonial-card {
+  flex: 0 0 calc(33.33% - 20px); /* Ajuste para que os 3 cards caibam com espaçamento */
+  margin: 0 10px; /* Espaçamento entre os cards */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.testimonial-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.testimonial-quote {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.testimonial-position {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+  .testimonials-carousel {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  .testimonials-container {
+    max-width: 100%;
+  }
+  .testimonial-card {
+    flex: 0 0 calc(50% - 20px); /* Exibe 2 cards por vez em telas médias */
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-carousel {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  .testimonials-container {
+    max-width: 100%;
+  }
+  .testimonial-card {
+    flex: 0 0 100%; /* Exibe 1 card por vez em dispositivos móveis */
+    margin: 0 5px;
+  }
+}
