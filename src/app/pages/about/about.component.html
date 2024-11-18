@@ -106,19 +106,82 @@
   <section class="group">
     <div class="content">
       <article>
-        <h2>Eagle Tax</h2>
+        <img
+          src="https://images.unsplash.com/photo-1709715357441-da1ec3d0bd4a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Missão"
+          width="400"
+          loading="lazy"
+          style="float: left; margin-right: 20px"
+        />
+        <h2>Sobre Nós</h2>
+        <h3>Nossa Jornada</h3>
         <p>
-          Aqui, você conta com especialistas em uma ampla gama de serviços
-          contábeis, dedicados a atender tanto residentes quanto imigrantes nos
-          EUA.
+          Fundada em 1993 por Paulo Oliveira e sua esposa Priscilla em Coconut
+          Creek, Flórida, a Eagle Tax começou como um pequeno escritório
+          doméstico com um punhado de clientes. Com a experiência de Paulo como
+          CPA no Brasil e a experiência de Priscilla em contabilidade e
+          linguística, eles rapidamente estabeleceram uma reputação de
+          excelência em preparação de impostos e serviços contábeis. Seu
+          comprometimento com a comunidade brasileira e além permitiu que
+          crescessem significativamente, atendendo a mais de 2.500 clientes nos
+          EUA e em vários países, incluindo Argentina, Colômbia, Canadá e
+          Portugal.
+        </p>
+        <p>
+          Ao longo dos anos, a Eagle Tax expandiu suas ofertas para incluir uma
+          gama abrangente de soluções, como serviços fiscais internacionais e de
+          expatriados, resolução de disputas com a Receita Federal,
+          contabilidade, folha de pagamento e muito mais. Sua dedicação à
+          qualidade e ao serviço comunitário os tornou um nome confiável no
+          setor.
+        </p>
+
+        <h3>Nossa Jornada</h3>
+        <p>
+          Em 2021, após quase três décadas de serviço bem-sucedido, Paulo e
+          Priscilla decidiram se aposentar. Buscando um sucessor que pudesse
+          manter seu legado e aprimorar ainda mais as ofertas da empresa, eles
+          encontraram o candidato ideal em Alvin Hommerding. Com ampla
+          experiência como CPA e sólida formação em auditoria e gestão
+          financeira, Alvin assumiu a Eagle Tax em outubro de 2022.
+        </p>
+        <p>
+          Sob a liderança de Alvin, a empresa adotou novas tecnologias e
+          práticas inovadoras, garantindo que nossa equipe esteja bem equipada
+          para atender às necessidades em evolução de nossos clientes. Com o
+          compromisso de manter os altos padrões definidos por Paulo e
+          Priscilla, fortalecemos nossa equipe e expandimos nossas capacidades.
+        </p>
+
+        <h3>Nosso Compromisso</h3>
+        <p>
+          Na Eagle Tax, somos apaixonados por criar valor para nossos clientes,
+          abordando suas preocupações financeiras mais desafiadoras. Nosso
+          portfólio de soluções inclui preparação de declaração de imposto de
+          renda, serviços fiscais internacionais e de expatriados, resolução de
+          disputas com o IRS, contabilidade, folha de pagamento, auditorias de
+          indenização trabalhista e serviços paralegais para gestão de LLC e
+          corporações.
+        </p>
+        <p>
+          Temos orgulho de nossos valores essenciais de profissionalismo,
+          integridade, transparência e uma abordagem centrada no cliente. Nosso
+          objetivo é promover relacionamentos de longo prazo e ganha-ganha,
+          garantindo que nossos clientes prosperem no mercado global de hoje.
+        </p>
+        <p>
+          À medida que continuamos a construir o legado de Paulo e Priscilla,
+          nos dedicamos a fornecer serviços e expertise inigualáveis, ajudando
+          nossos clientes a navegar em suas jornadas financeiras com confiança.
+        </p>
+
+        <h3>Junte-se a Nós</h3>
+        <p>
+          Convidamos você a descobrir como a Eagle Tax pode ajudá-lo a ter
+          sucesso. Deixe-nos ser seu parceiro de confiança para atingir seus
+          objetivos financeiros.
         </p>
       </article>
-      <img
-        src="https://images.unsplash.com/photo-1709715357441-da1ec3d0bd4a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="Missão"
-        width="500"
-        loading="lazy"
-      />
     </div>
   </section>
 
@@ -262,13 +325,19 @@
       <button class="carousel-nav prev" (click)="scrollLeft()">&#10094;</button>
       <div class="testimonials-container" #testimonialContainer>
         <div class="testimonial-card" *ngFor="let testimonial of testimonials">
-          <img [src]="testimonial.image" [alt]="'Foto de ' + testimonial.name" class="testimonial-image" />
+          <img
+            [src]="testimonial.image"
+            [alt]="'Foto de ' + testimonial.name"
+            class="testimonial-image"
+          />
           <p class="testimonial-quote">{{ testimonial.quote }}</p>
           <p class="testimonial-name">{{ testimonial.name }}</p>
           <p class="testimonial-position">{{ testimonial.position }}</p>
         </div>
       </div>
-      <button class="carousel-nav next" (click)="scrollRight()">&#10095;</button>
+      <button class="carousel-nav next" (click)="scrollRight()">
+        &#10095;
+      </button>
     </div>
-  </section>  
+  </section>
 </main>

@@ -14,29 +14,39 @@
 </section>
 
 <main class="main-content">
+  <section class="services">
+    <div class="content">
+      <header class="content-header">
+        <h2>Contato</h2>
+        <p>
+          Estamos aqui para ajudar você a navegar em sua jornada financeira. Na
+          Eagle Tax, valorizamos a comunicação aberta e estamos comprometidos em
+          fornecer o suporte de que você precisa. Se você tiver dúvidas sobre
+          nossos serviços, precisar de assistência com seus impostos ou quiser
+          discutir sua situação única, nossa equipe está pronta para ajudar
+          você. Entre em contato conosco hoje mesmo e vamos trabalhar juntos
+          para atingir seus objetivos!
+        </p>
+      </header>
+    </div>
+  </section>
   <section class="group">
     <div class="content">
       <div class="content-grid">
         <div class="item">
           <img src="assets/images/ic-tel.svg" alt="Eagle tax phone" />
           <h3>Telefone</h3>
-          <p>
-            (954) 532-3842
-          </p>
+          <p>(954) 532-3842</p>
         </div>
         <div class="item">
           <img src="assets/images/ic-whatsapp.svg" alt="" />
           <h3>WhatsApp</h3>
-          <p>
-            (954) 532-3842
-          </p>
+          <p>(954) 532-3842</p>
         </div>
         <div class="item">
           <img src="assets/images/ic-mail-fill.svg" alt="" />
           <h3>E-mail</h3>
-          <p>
-            info&#64;eagle-tax.com
-          </p>
+          <p>info&#64;eagle-tax.com</p>
         </div>
       </div>
     </div>
@@ -81,7 +91,7 @@
             </div>
           </label>
 
-          <div style="display: flex; justify-content: space-between; gap: 50px;">
+          <div style="display: flex; justify-content: space-between; gap: 50px">
             <label for="email">
               E-mail
               <input
@@ -119,8 +129,8 @@
                 name="telefone"
                 id="telefone"
                 formControlName="telefone"
-                placeholder="(XX) XXXXX-XXXX"
-                [mask]="'(XX) XXXXX-XXXX'"
+                placeholder="+X (XXX) XXX-XXXX"
+                [mask]="'+X (XXX) XXX-XXXX'"
                 [ngClass]="{
                   'is-invalid':
                     contactForm.get('telefone')?.invalid &&
@@ -141,7 +151,7 @@
               </div>
             </label>
           </div>
-          
+
           <label for="mensagem">
             Mensagem
             <textarea

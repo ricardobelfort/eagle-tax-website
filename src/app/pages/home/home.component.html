@@ -47,15 +47,30 @@
             (ngSubmit)="nextStep()"
           >
             <label for="impostosPessoais">
-              <input type="radio" formControlName="option" value="Personal Taxes" id="1" />
+              <input
+                type="radio"
+                formControlName="option"
+                value="Personal Taxes"
+                id="1"
+              />
               Impostos pessoais
             </label>
             <label for="pequenosNegocios">
-              <input type="radio" formControlName="option" value="Small-Business Taxes" id="2" />
+              <input
+                type="radio"
+                formControlName="option"
+                value="Small-Business Taxes"
+                id="2"
+              />
               Impostos para pequenas empresas
             </label>
             <label for="novoNegocio">
-              <input type="radio" formControlName="option" value="Start a Business" id="3" />
+              <input
+                type="radio"
+                formControlName="option"
+                value="Start a Business"
+                id="3"
+              />
               Começar um novo negócio
             </label>
             <button type="submit" [disabled]="!step1Form.valid">Próximo</button>
@@ -640,8 +655,8 @@
               name="telefone"
               id="telefone"
               formControlName="telefone"
-              placeholder="(XX) XXXXX-XXXX"
-              [mask]="'(XX) XXXXX-XXXX'"
+              placeholder="+X (XXX) XXX-XXXX"
+              [mask]="'+X (XXX) XXX-XXXX'"
               [ngClass]="{
                 'is-invalid':
                   contactForm.get('telefone')?.invalid &&

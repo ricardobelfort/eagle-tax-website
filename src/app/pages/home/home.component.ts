@@ -177,7 +177,7 @@ export class HomeComponent implements OnInit {
         this.viewportScroller.scrollToPosition([0, 0]);
       }
     });
-    
+
     this.step1Form = this.fb.group({
       option: ['', Validators.required],
     });
@@ -307,7 +307,7 @@ export class HomeComponent implements OnInit {
 
   submitForm() {
     let formData;
-  
+
     if (
       this.selectedOption === 'Impostos pessoais' ||
       this.selectedOption === 'Começar um novo negócio'
@@ -320,7 +320,7 @@ export class HomeComponent implements OnInit {
         this.step5Form.valid
       ) {
         formData = {
-          ...this.step1Form.value,  // Inclui a opção selecionada
+          ...this.step1Form.value, // Inclui a opção selecionada
           ...this.step2Form.value,
           ...this.step3Form.value,
           ...this.step4Form.value,
@@ -345,7 +345,7 @@ export class HomeComponent implements OnInit {
         this.step6Form.valid
       ) {
         formData = {
-          ...this.step1Form.value,  // Inclui a opção selecionada
+          ...this.step1Form.value, // Inclui a opção selecionada
           ...this.step2Form.value,
           ...this.step3Form.value,
           ...this.step4Form.value,
@@ -362,7 +362,7 @@ export class HomeComponent implements OnInit {
         return;
       }
     }
-  
+
     // Envio do formulário via EmailJS
     emailjs
       .send(
@@ -380,7 +380,7 @@ export class HomeComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'OK',
           });
-  
+
           // Resetar o formulário e voltar ao passo inicial
           this.currentStep = 1;
           this.progress = 0;
@@ -391,7 +391,7 @@ export class HomeComponent implements OnInit {
           this.step5Form.reset();
           if (this.step6Form) this.step6Form.reset();
         },
-        (error) => {
+        (error: any) => {
           console.error('FAILED...', error);
           Swal.fire({
             title: 'Erro!',
@@ -401,7 +401,7 @@ export class HomeComponent implements OnInit {
           });
         }
       );
-  }  
+  }
 
   onSubmit() {
     if (this.contactForm.valid) {
@@ -432,7 +432,7 @@ export class HomeComponent implements OnInit {
             this.contactForm.markAsPristine();
             this.contactForm.markAsUntouched();
           },
-          (error) => {
+          (error: any) => {
             console.error('FAILED...', error);
             Swal.fire({
               title: 'Erro!',
