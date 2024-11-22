@@ -7,8 +7,7 @@
       rgba(0, 51, 153, 0.85),
       rgba(0, 17, 51, 0.5)
     ),
-    url(../../../assets/images/contact.jpg)
-      no-repeat center 80% / cover;
+    url(../../../assets/images/contact.jpg) no-repeat center 80% / cover;
   mix-blend-mode: multiply;
 }
 
@@ -31,6 +30,24 @@
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
+}
+
+.contact {
+  width: 100%;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.contact .content {
+  width: 960px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.contact .content h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
 .group {
@@ -87,8 +104,8 @@
   gap: 50px;
 }
 
-.contact-content .contact-header {
-  font-size: 32px;
+.contact-content .contact-header h2 {
+  font-size: 36px;
   font-weight: 700;
   margin-bottom: 48px;
 }

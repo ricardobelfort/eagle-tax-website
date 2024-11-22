@@ -292,13 +292,13 @@ export class HomeComponent implements OnInit {
   updateSelectedOption(value: string) {
     switch (value) {
       case 'Personal Taxes':
-        this.selectedOption = 'Impostos pessoais';
+        this.selectedOption = 'Personal Taxes';
         break;
       case 'Small-Business Taxes':
-        this.selectedOption = 'Impostos para pequenas empresas';
+        this.selectedOption = 'Small-Business Taxes';
         break;
       case 'Start a Business':
-        this.selectedOption = 'Começar um novo negócio';
+        this.selectedOption = 'Start a Business';
         break;
       default:
         this.selectedOption = '';

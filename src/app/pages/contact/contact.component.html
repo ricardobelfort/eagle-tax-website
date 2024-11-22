@@ -1,41 +1,38 @@
 <section class="hero">
   <article class="hero-content">
-    <h1 class="hero-title">Entre em contato com a nossa equipe!</h1>
+    <h1 class="hero-title">Contact our team!</h1>
     <p class="hero-text">
-      Estamos aqui para ajudar! Se você tiver alguma dúvida, sugestão ou
-      simplesmente quiser falar conosco, não hesite em entrar em contato.
+      We're here to help! If you have any questions, suggestions, or just want
+      to talk to us, don't hesitate to get in touch.
     </p>
     <p class="hero-text">
-      Preencha o formulário abaixo ou envie um e-mail diretamente para a nossa
-      equipe. Responderemos o mais rápido possível para garantir que sua
-      experiência seja a melhor possível.
+      Fill out the form below or email our team directly. We'll get back to you
+      as soon as possible to make sure your experience is the best it can be.
     </p>
   </article>
 </section>
 
 <main class="main-content">
-  <section class="services">
+  <section class="contact">
     <div class="content">
-      <header class="content-header">
-        <h2>Contato</h2>
-        <p>
-          Estamos aqui para ajudar você a navegar em sua jornada financeira. Na
-          Eagle Tax, valorizamos a comunicação aberta e estamos comprometidos em
-          fornecer o suporte de que você precisa. Se você tiver dúvidas sobre
-          nossos serviços, precisar de assistência com seus impostos ou quiser
-          discutir sua situação única, nossa equipe está pronta para ajudar
-          você. Entre em contato conosco hoje mesmo e vamos trabalhar juntos
-          para atingir seus objetivos!
-        </p>
-      </header>
+      <h2>Contact</h2>
+      <p>
+        We’re here to help you navigate your financial journey. At Eagle Tax, we
+        value open communication and are committed to providing you with the
+        support you need. Whether you have questions about our services, need
+        assistance with your taxes, or want to discuss your unique situation,
+        our team is ready to help. Contact us today and let’s work together to
+        achieve your goals!
+      </p>
     </div>
   </section>
+
   <section class="group">
     <div class="content">
       <div class="content-grid">
         <div class="item">
           <img src="assets/images/ic-tel.svg" alt="Eagle tax phone" />
-          <h3>Telefone</h3>
+          <h3>Telephone</h3>
           <p>(954) 532-3842</p>
         </div>
         <div class="item">
@@ -45,7 +42,7 @@
         </div>
         <div class="item">
           <img src="assets/images/ic-mail-fill.svg" alt="" />
-          <h3>E-mail</h3>
+          <h3>Email</h3>
           <p>info&#64;eagle-tax.com</p>
         </div>
       </div>
@@ -56,18 +53,18 @@
     <div class="contact-content">
       <div class="contact-form">
         <header class="contact-header">
-          <h2>Fale Conosco</h2>
+          <h2>Get in Touch</h2>
         </header>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <label for="nome">
-            Nome
+            Name
             <input
               type="text"
               name="nome"
               id="nome"
               formControlName="nome"
               autocomplete="off"
-              placeholder="Insira seu nome"
+              placeholder="Fill in your name"
               [ngClass]="{
                 'is-invalid':
                   contactForm.get('nome')?.invalid &&
@@ -93,13 +90,13 @@
 
           <div style="display: flex; justify-content: space-between; gap: 50px">
             <label for="email">
-              E-mail
+              Email
               <input
                 type="email"
                 name="email"
                 id="email"
                 formControlName="email"
-                placeholder="Insira seu e-mail"
+                placeholder="Fill in your email"
                 [ngClass]="{
                   'is-invalid':
                     contactForm.get('email')?.invalid &&
@@ -123,7 +120,7 @@
               </div>
             </label>
             <label for="telefone">
-              Telefone
+              Telephone
               <input
                 type="tel"
                 name="telefone"
@@ -153,12 +150,12 @@
           </div>
 
           <label for="mensagem">
-            Mensagem
+            Message
             <textarea
               name="mensagem"
               id="mensagem"
               formControlName="mensagem"
-              placeholder="Mensagem"
+              placeholder="Fill in your message"
               rows="5"
               [ngClass]="{
                 'is-invalid':
@@ -182,7 +179,7 @@
               >
             </div>
           </label>
-          <button type="submit" [disabled]="contactForm.invalid">Enviar</button>
+          <button type="submit" [disabled]="contactForm.invalid">Send</button>
         </form>
       </div>
     </div>

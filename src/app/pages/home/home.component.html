@@ -1,11 +1,11 @@
 <section class="hero">
   <article class="hero-content">
-    <h2 class="hero-title">Serviços contábeis & Empresariais</h2>
+    <h2 class="hero-title">Accounting & Business Services</h2>
     <p class="hero-text">
-      A Eagle Tax sempre está se desenvolvendo para entregar o melhor apoio
-      estratégico aos seus clientes, de forma prática e inovadora.
+      Eagle Tax is always developing to deliver the best strategic support to
+      its clients, in a practical and innovative way.
     </p>
-    <button class="btn-cta" routerLink="/contact">Fale conosco</button>
+    <button class="btn-cta" routerLink="/contact">Contact us</button>
   </article>
   <ngx-slick-carousel
     class="carousel"
@@ -24,17 +24,16 @@
 <main class="main-content">
   <section class="service-form">
     <article class="left">
-      <h2>Tenha um atendimento personalizado</h2>
+      <h2>Get personalized service</h2>
       <p>
-        Aqui, você conta com especialistas em uma ampla gama de serviços
-        contábeis, dedicados a atender tanto residentes quanto imigrantes nos
-        EUA.
+        Here, you can count on experts in a wide range of accounting services,
+        dedicated to serving both residents and immigrants in the USA.
       </p>
     </article>
     <article class="right">
       <header>
-        <h3>Com o que você precisa de ajuda?</h3>
-        <p>Isso dará à nossa equipe uma ideia de como eles podem atendê-lo.</p>
+        <h3>What do you need help with?</h3>
+        <p>This will give our team an idea of ​​how they can assist you.</p>
       </header>
 
       <div class="form-carousel">
@@ -53,7 +52,7 @@
                 value="Personal Taxes"
                 id="1"
               />
-              Impostos pessoais
+              Personal Taxes
             </label>
             <label for="pequenosNegocios">
               <input
@@ -62,7 +61,7 @@
                 value="Small-Business Taxes"
                 id="2"
               />
-              Impostos para pequenas empresas
+              Small-Business Taxes
             </label>
             <label for="novoNegocio">
               <input
@@ -71,12 +70,12 @@
                 value="Start a Business"
                 id="3"
               />
-              Começar um novo negócio
+              Start a Business
             </label>
-            <button type="submit" [disabled]="!step1Form.valid">Próximo</button>
+            <button type="submit" [disabled]="!step1Form.valid">Next</button>
           </form>
 
-          <div *ngIf="selectedOption === 'Impostos pessoais'">
+          <div *ngIf="selectedOption === 'Personal Taxes'">
             <!-- Step 2 -->
             <form
               *ngSwitchCase="2"
@@ -92,22 +91,20 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>1. Qual o seu nome?</h3>
+              <h3>1. What is your name?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="firstName"
-                placeholder="Primeiro nome"
+                placeholder="First name"
               />
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="lastName"
-                placeholder="Último nome"
+                placeholder="Last name"
               />
-              <button type="submit" [disabled]="!step2Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step2Form.valid">Next</button>
             </form>
 
             <!-- Step 3 -->
@@ -125,17 +122,15 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>2. Quais são as suas informações de e-mail?</h3>
-              <p>Usaremos isso para convidá-lo para nosso sistema.</p>
+              <h3>2. What is your email information?</h3>
+              <p>We will use this to invite you to our system.</p>
               <input
                 type="email"
                 class="poppins-regular"
                 formControlName="email"
-                placeholder="Informe seu e-mail"
+                placeholder="Fill in your email"
               />
-              <button type="submit" [disabled]="!step3Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step3Form.valid">Next</button>
             </form>
 
             <!-- Step 4 -->
@@ -153,16 +148,14 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>3. Quail seu número de telefone?</h3>
+              <h3>3. What is your phone number?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="phone"
-                placeholder="Informe seu telefone"
+                placeholder="Fill in your phone"
               />
-              <button type="submit" [disabled]="!step4Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step4Form.valid">Next</button>
             </form>
 
             <!-- Step 5 -->
@@ -181,22 +174,20 @@
                 <h2>{{ selectedOption }}</h2>
               </div>
               <h3>
-                4. O que você acha que é importante que saibamos antes de entrar
-                em contato com você?
+                4. What do you think is important for us to know before
+                contacting you?
               </h3>
               <textarea
                 class="poppins-regular"
                 rows="2"
                 formControlName="message"
-                placeholder="Deixe sua mensagem"
+                placeholder="Fill in your message"
               ></textarea>
-              <button type="submit" [disabled]="!step5Form.valid">
-                Enviar
-              </button>
+              <button type="submit" [disabled]="!step5Form.valid">Send</button>
             </form>
           </div>
 
-          <div *ngIf="selectedOption === 'Impostos para pequenas empresas'">
+          <div *ngIf="selectedOption === 'Small-Business Taxes'">
             <!-- Step 2 -->
             <form
               *ngSwitchCase="2"
@@ -212,22 +203,20 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>1. Qual o seu nome?</h3>
+              <h3>1. What is your name?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="firstName"
-                placeholder="Primeiro nome"
+                placeholder="First name"
               />
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="lastName"
-                placeholder="Último nome"
+                placeholder="Last name"
               />
-              <button type="submit" [disabled]="!step2Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step2Form.valid">Next</button>
             </form>
 
             <!-- Step 3 -->
@@ -245,16 +234,14 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>2. Qual o nome da sua empresa?</h3>
+              <h3>2. What is the name of your company?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="businessName"
-                placeholder="Informe nome da empresa"
+                placeholder="Enter company name"
               />
-              <button type="submit" [disabled]="!step3Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step3Form.valid">Next</button>
             </form>
 
             <!-- Step 4 -->
@@ -272,16 +259,14 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>3. Qual o seu e-mail?</h3>
+              <h3>3. What is your email?</h3>
               <input
                 type="email"
                 class="poppins-regular"
                 formControlName="email"
-                placeholder="Informe seu e-mail"
+                placeholder="Fill in your email"
               />
-              <button type="submit" [disabled]="!step4Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step4Form.valid">Next</button>
             </form>
 
             <!-- Step 5 -->
@@ -299,16 +284,14 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>4. Qual seu número de telefone?</h3>
+              <h3>4. What is your phone number?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="phone"
-                placeholder="Informe seu telefone"
+                placeholder="Fill in your phone"
               />
-              <button type="submit" [disabled]="!step5Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step5Form.valid">Next</button>
             </form>
 
             <!-- Step 6 -->
@@ -336,13 +319,11 @@
                 formControlName="message"
                 placeholder="Deixe sua mensagem"
               ></textarea>
-              <button type="submit" [disabled]="!step6Form.valid">
-                Enviar
-              </button>
+              <button type="submit" [disabled]="!step6Form.valid">Send</button>
             </form>
           </div>
 
-          <div *ngIf="selectedOption === 'Começar um novo negócio'">
+          <div *ngIf="selectedOption === 'Start a Business'">
             <!-- Step 2 -->
             <form
               *ngSwitchCase="2"
@@ -358,22 +339,20 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>1. Qual o seu nome?</h3>
+              <h3>1. What is your name?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="firstName"
-                placeholder="Primeiro nome"
+                placeholder="First name"
               />
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="lastName"
-                placeholder="Último nome"
+                placeholder="Last name"
               />
-              <button type="submit" [disabled]="!step2Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step2Form.valid">Next</button>
             </form>
 
             <!-- Step 3 -->
@@ -391,16 +370,14 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>2. Qual o seu e-mail?</h3>
+              <h3>2. What is your email?</h3>
               <input
                 type="email"
                 class="poppins-regular"
                 formControlName="email"
-                placeholder="Informe seu e-mail"
+                placeholder="Fill in your email"
               />
-              <button type="submit" [disabled]="!step3Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step3Form.valid">Next</button>
             </form>
 
             <!-- Step 4 -->
@@ -418,16 +395,14 @@
                 </ng-container>
                 <h2>{{ selectedOption }}</h2>
               </div>
-              <h3>3. Quail seu número de telefone?</h3>
+              <h3>3. What is your phone number?</h3>
               <input
                 type="text"
                 class="poppins-regular"
                 formControlName="phone"
-                placeholder="Informe seu telefone"
+                placeholder="Fill in your phone"
               />
-              <button type="submit" [disabled]="!step4Form.valid">
-                Próximo
-              </button>
+              <button type="submit" [disabled]="!step4Form.valid">Next</button>
             </form>
 
             <!-- Step 5 -->
@@ -446,8 +421,8 @@
                 <h2>{{ selectedOption }}</h2>
               </div>
               <h3>
-                4. O que você acha que é importante que saibamos antes de entrar
-                em contato com você?
+                4. What do you think is important for us to know before
+                contacting you?
               </h3>
               <textarea
                 class="poppins-regular"
@@ -455,15 +430,13 @@
                 formControlName="message"
                 placeholder="Deixe sua mensagem"
               ></textarea>
-              <button type="submit" [disabled]="!step5Form.valid">
-                Enviar
-              </button>
+              <button type="submit" [disabled]="!step5Form.valid">Send</button>
             </form>
           </div>
         </div>
       </div>
       <div class="status">
-        <small>{{ progress }}% completo</small>
+        <small>{{ progress }}% completed</small>
         <progress id="file" [value]="progress" max="100"></progress>
       </div>
     </article>
@@ -473,14 +446,14 @@
     <div class="content">
       <img src="assets/images/image1.jpg" alt="Missão" loading="lazy" />
       <article>
-        <h2>Somos um grupo de indivíduos com uma grande missão</h2>
+        <h2>We are a group of individuals with a great mission</h2>
         <p>
-          Somos um grupo dedicado a auxiliar residentes nos EUA na regularização
-          e pagamento de impostos de maneira justa e descomplicada.
+          We are a group dedicated to helping U.S. residents file and pay their
+          taxes in a fair and hassle-free manner.
         </p>
         <p>
-          Oferecemos uma variedade de serviços para simplificar esse processo e
-          garantir que tudo seja feito corretamente.
+          We offer a variety of services to simplify this process and ensure
+          everything is done correctly.
         </p>
       </article>
     </div>
@@ -488,10 +461,9 @@
 
   <section class="services">
     <header class="services-header">
-      <h2>Nossos serviços</h2>
+      <h2>Our services</h2>
       <p>
-        Explore nosso portfólio e escolha o serviço que melhor atende às suas
-        necessidades
+        Explore our portfolio and choose the service that best meets your needs
       </p>
     </header>
     <div class="content-grid">
@@ -510,41 +482,12 @@
   <section class="brands">
     <h2>Nossos clientes</h2>
     <div class="brands-content">
-      <img
-        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-        src="https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg"
-        alt="Transistor"
-        width="158"
-        height="48"
-      />
-      <img
-        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-        src="https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg"
-        alt="Reform"
-        width="158"
-        height="48"
-      />
-      <img
-        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-        src="https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg"
-        alt="Tuple"
-        width="158"
-        height="48"
-      />
-      <img
-        class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-        src="https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg"
-        alt="SavvyCal"
-        width="158"
-        height="48"
-      />
-      <img
-        class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-        src="https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg"
-        alt="Statamic"
-        width="158"
-        height="48"
-      />
+      <p>BARBECUE BOUTIQUE</p>
+      <p>FRATELLIS</p>
+      <p>FALCO BEAUTY</p>
+      <p>DYNAMUS BARBERSHOP</p>
+      <p>PUPPYLICIUS</p>
+      <p>RICK AND SONS TILE</p>
     </div>
   </section>
 
@@ -564,11 +507,11 @@
     <div class="contact-content">
       <aside class="contact-info">
         <img src="assets/images/icon-contact.svg" alt="Fale conosco" />
-        <h2>Fale Conosco</h2>
+        <h2>Get in Touch</h2>
         <ul class="contact-info-items">
           <li>
             <img src="assets/images/icon-phone.svg" alt="Eagle tax phone" />
-            <strong>Telefone:</strong> +1 (954) 532-3842
+            <strong>Telephone:</strong> +1 (954) 532-3842
           </li>
           <li>
             <img
@@ -579,7 +522,7 @@
           </li>
           <li>
             <img src="assets/images/icon-mail.svg" alt="Eagle tax email" />
-            <strong>E-mail:</strong>
+            <strong>Email:</strong>
             <a href="mailto:info@eagle-tax.com">info&#64;eagle-tax.com</a>
           </li>
         </ul>
@@ -588,14 +531,14 @@
       <div class="contact-form">
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <label for="nome">
-            Nome
+            Name
             <input
               type="text"
               name="nome"
               id="nome"
               formControlName="nome"
               autocomplete="off"
-              placeholder="Insira seu nome"
+              placeholder="Fill in your name"
               [ngClass]="{
                 'is-invalid':
                   contactForm.get('nome')?.invalid &&
@@ -619,13 +562,13 @@
             </div>
           </label>
           <label for="email">
-            E-mail
+            Email
             <input
               type="email"
               name="email"
               id="email"
               formControlName="email"
-              placeholder="Insira seu e-mail"
+              placeholder="Fill in your email"
               [ngClass]="{
                 'is-invalid':
                   contactForm.get('email')?.invalid &&
@@ -649,7 +592,7 @@
             </div>
           </label>
           <label for="telefone">
-            Telefone
+            Telephone
             <input
               type="tel"
               name="telefone"
@@ -677,12 +620,12 @@
             </div>
           </label>
           <label for="mensagem">
-            Mensagem
+            Message
             <textarea
               name="mensagem"
               id="mensagem"
               formControlName="mensagem"
-              placeholder="Mensagem"
+              placeholder="Fill in your message"
               rows="5"
               [ngClass]="{
                 'is-invalid':
@@ -706,7 +649,7 @@
               >
             </div>
           </label>
-          <button type="submit" [disabled]="contactForm.invalid">Enviar</button>
+          <button type="submit" [disabled]="contactForm.invalid">Send</button>
         </form>
       </div>
     </div>
