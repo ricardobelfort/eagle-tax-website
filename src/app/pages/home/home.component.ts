@@ -320,7 +320,7 @@ export class HomeComponent implements OnInit {
         this.step5Form.valid
       ) {
         formData = {
-          ...this.step1Form.value, // Inclui a opção selecionada
+          ...this.step1Form.value,
           ...this.step2Form.value,
           ...this.step3Form.value,
           ...this.step4Form.value,
@@ -328,8 +328,8 @@ export class HomeComponent implements OnInit {
         };
       } else {
         Swal.fire({
-          title: 'Erro!',
-          text: 'Por favor, preencha todos os campos corretamente.',
+          title: 'Error!',
+          text: 'Please fill in all fields correctly.',
           icon: 'error',
           confirmButtonText: 'OK',
         });
@@ -345,7 +345,7 @@ export class HomeComponent implements OnInit {
         this.step6Form.valid
       ) {
         formData = {
-          ...this.step1Form.value, // Inclui a opção selecionada
+          ...this.step1Form.value,
           ...this.step2Form.value,
           ...this.step3Form.value,
           ...this.step4Form.value,
@@ -354,8 +354,8 @@ export class HomeComponent implements OnInit {
         };
       } else {
         Swal.fire({
-          title: 'Erro!',
-          text: 'Por favor, preencha todos os campos corretamente.',
+          title: 'Error!',
+          text: 'Please fill in all fields correctly.',
           icon: 'error',
           confirmButtonText: 'OK',
         });
@@ -375,8 +375,8 @@ export class HomeComponent implements OnInit {
         (response: EmailJSResponseStatus) => {
           console.log('SUCCESS!', response.status, response.text);
           Swal.fire({
-            title: 'Sucesso!',
-            text: 'Obrigado por suas informações! Entraremos em contato em breve.',
+            title: 'Success!',
+            text: 'Thank you for your information! We will contact you shortly.',
             icon: 'success',
             confirmButtonText: 'OK',
           });
@@ -394,8 +394,8 @@ export class HomeComponent implements OnInit {
         (error: any) => {
           console.error('FAILED...', error);
           Swal.fire({
-            title: 'Erro!',
-            text: 'Erro ao enviar o formulário. Tente novamente.',
+            title: 'Error!',
+            text: 'Error submitting form. Please try again.',
             icon: 'error',
             confirmButtonText: 'OK',
           });
@@ -423,8 +423,8 @@ export class HomeComponent implements OnInit {
           (response: EmailJSResponseStatus) => {
             console.log('SUCCESS!', response.status, response.text);
             Swal.fire({
-              title: 'Sucesso!',
-              text: 'Formulário enviado com sucesso!',
+              title: 'Success!',
+              text: 'Form submitted successfully!',
               icon: 'success',
               confirmButtonText: 'OK',
             });
@@ -436,7 +436,7 @@ export class HomeComponent implements OnInit {
             console.error('FAILED...', error);
             Swal.fire({
               title: 'Erro!',
-              text: 'Erro ao enviar o formulário. Tente novamente.',
+              text: 'Error submitting form. Please try again.',
               icon: 'error',
               confirmButtonText: 'OK',
             });
@@ -444,8 +444,8 @@ export class HomeComponent implements OnInit {
         );
     } else {
       Swal.fire({
-        title: 'Atenção!',
-        text: 'Por favor, preencha todos os campos corretamente.',
+        title: 'Warning!',
+        text: 'Please fill in all fields correctly..',
         icon: 'warning',
         confirmButtonText: 'OK',
       });
