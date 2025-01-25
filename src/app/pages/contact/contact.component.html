@@ -56,34 +56,34 @@
           <h2>Get in Touch</h2>
         </header>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <label for="nome">
+          <label for="name">
             Name
             <input
               type="text"
-              name="nome"
-              id="nome"
-              formControlName="nome"
+              name="name"
+              id="name"
+              formControlName="name"
               autocomplete="off"
               placeholder="Fill in your name"
               [ngClass]="{
                 'is-invalid':
-                  contactForm.get('nome')?.invalid &&
-                  contactForm.get('nome')?.touched
+                  contactForm.get('name')?.invalid &&
+                  contactForm.get('name')?.touched
               }"
               required
             />
             <div
               *ngIf="
-                contactForm.get('nome')?.invalid &&
-                contactForm.get('nome')?.touched
+                contactForm.get('name')?.invalid &&
+                contactForm.get('name')?.touched
               "
               class="error-message"
             >
-              <small *ngIf="contactForm.get('nome')?.errors?.['required']"
-                >Nome é obrigatório.</small
+              <small *ngIf="contactForm.get('name')?.errors?.['required']"
+                >Name is required.</small
               >
-              <small *ngIf="contactForm.get('nome')?.errors?.['minlength']"
-                >Nome deve ter pelo menos 3 caracteres.</small
+              <small *ngIf="contactForm.get('name')?.errors?.['minlength']"
+                >Name must be at least 3 characters.</small
               >
             </div>
           </label>
@@ -112,70 +112,70 @@
                 class="error-message"
               >
                 <small *ngIf="contactForm.get('email')?.errors?.['required']"
-                  >E-mail é obrigatório.</small
+                  >Email is required.</small
                 >
                 <small *ngIf="contactForm.get('email')?.errors?.['email']"
-                  >E-mail inválido.</small
+                  >Invalid Email.</small
                 >
               </div>
             </label>
-            <label for="telefone">
+            <label for="telephone">
               Telephone
               <input
                 type="tel"
-                name="telefone"
-                id="telefone"
-                formControlName="telefone"
+                name="telephone"
+                id="telephone"
+                formControlName="telephone"
                 placeholder="+X (XXX) XXX-XXXX"
                 [mask]="'+X (XXX) XXX-XXXX'"
                 [ngClass]="{
                   'is-invalid':
-                    contactForm.get('telefone')?.invalid &&
-                    contactForm.get('telefone')?.touched
+                    contactForm.get('telephone')?.invalid &&
+                    contactForm.get('telephone')?.touched
                 }"
                 required
               />
               <div
                 *ngIf="
-                  contactForm.get('telefone')?.invalid &&
-                  contactForm.get('telefone')?.touched
+                  contactForm.get('telephone')?.invalid &&
+                  contactForm.get('telephone')?.touched
                 "
                 class="error-message"
               >
-                <small *ngIf="contactForm.get('telefone')?.errors?.['required']"
-                  >Telefone é obrigatório.</small
+                <small *ngIf="contactForm.get('telephone')?.errors?.['required']"
+                  >Telephone is required.</small
                 >
               </div>
             </label>
           </div>
 
-          <label for="mensagem">
+          <label for="message">
             Message
             <textarea
-              name="mensagem"
-              id="mensagem"
-              formControlName="mensagem"
+              name="message"
+              id="message"
+              formControlName="message"
               placeholder="Fill in your message"
               rows="5"
               [ngClass]="{
                 'is-invalid':
-                  contactForm.get('mensagem')?.invalid &&
-                  contactForm.get('mensagem')?.touched
+                  contactForm.get('message')?.invalid &&
+                  contactForm.get('message')?.touched
               }"
               required
             ></textarea>
             <div
               *ngIf="
-                contactForm.get('mensagem')?.invalid &&
-                contactForm.get('mensagem')?.touched
+                contactForm.get('message')?.invalid &&
+                contactForm.get('message')?.touched
               "
               class="error-message"
             >
-              <small *ngIf="contactForm.get('mensagem')?.errors?.['required']"
-                >Mensagem é obrigatória.</small
+              <small *ngIf="contactForm.get('message')?.errors?.['required']"
+                >Message is required.</small
               >
-              <small *ngIf="contactForm.get('mensagem')?.errors?.['minlength']"
-                >Mensagem deve ter pelo menos 10 caracteres.</small
+              <small *ngIf="contactForm.get('message')?.errors?.['minlength']"
+                >Message must be at least 10 characters.</small
               >
             </div>
           </label>

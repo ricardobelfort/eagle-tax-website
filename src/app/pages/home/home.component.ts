@@ -106,11 +106,6 @@ export class HomeComponent implements OnInit {
       content: 'We offer comprehensive corporate services',
     },
     {
-      icon: 'assets/images/icon-paralegal.svg',
-      title: 'Paralegal Services',
-      content: 'Our paralegal services specialize in immigration processes',
-    },
-    {
       icon: 'assets/images/icon-boifincen.svg',
       title: 'BOI Reporting',
       content:
@@ -309,8 +304,8 @@ export class HomeComponent implements OnInit {
     let formData;
 
     if (
-      this.selectedOption === 'Impostos pessoais' ||
-      this.selectedOption === 'Começar um novo negócio'
+      this.selectedOption === 'Personal Taxes' ||
+      this.selectedOption === 'Start a Business'
     ) {
       if (
         this.step1Form.valid &&
@@ -335,7 +330,7 @@ export class HomeComponent implements OnInit {
         });
         return;
       }
-    } else if (this.selectedOption === 'Impostos para pequenas empresas') {
+    } else if (this.selectedOption === 'Small-Business Taxes') {
       if (
         this.step1Form.valid &&
         this.step2Form.valid &&
@@ -361,6 +356,11 @@ export class HomeComponent implements OnInit {
         });
         return;
       }
+    }
+
+    if (!formData) {
+      console.error('Form data is undefined!');
+      return;
     }
 
     // Envio do formulário via EmailJS
@@ -406,10 +406,10 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     if (this.contactForm.valid) {
       const templateParams: { [key: string]: any } = {
-        nome: this.contactForm.get('nome')?.value,
+        nome: this.contactForm.get('name')?.value,
         email: this.contactForm.get('email')?.value,
-        telefone: this.contactForm.get('telefone')?.value,
-        mensagem: this.contactForm.get('mensagem')?.value,
+        telefone: this.contactForm.get('telephone')?.value,
+        mensagem: this.contactForm.get('message')?.value,
       };
 
       emailjs
@@ -435,7 +435,7 @@ export class HomeComponent implements OnInit {
           (error: any) => {
             console.error('FAILED...', error);
             Swal.fire({
-              title: 'Erro!',
+              title: 'Error!',
               text: 'Error submitting form. Please try again.',
               icon: 'error',
               confirmButtonText: 'OK',

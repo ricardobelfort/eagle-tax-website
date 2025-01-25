@@ -11,76 +11,19 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class AboutComponent {
   testimonials = [
     {
-      image:
-        'https://images.pexels.com/photos/15502152/pexels-photo-15502152/free-photo-of-posed-photo-of-a-young-woman-in-a-black-hat-covered-in-snow.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      image: 'assets/images/pizzarella.jpeg',
       quote:
-        '“Really happy with the product and kind services provided by Cofile. Will recommend it to the world!”',
-      name: 'Ashley Rock',
-      position: 'Founder of Paple',
+        '“We have been with Eagle Tax for many years, and one of the things we like most is the service! The team always treats us with great attention and respect, and you can feel that they really care about our business. In addition to taking care of everything for us, they are always available to answer questions and help with whatever we need. This makes all the difference in our day-to-day work! With their support, we can focus on what we do best: serving our pizzas and taking good care of our customers.”',
+      name: 'Fernando Braga',
+      position: 'Pizzarella Corp.',
     },
     {
       image:
-        'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        'assets/images/personal-branding.png',
       quote:
-        '“Top class product and services! Since my first sign up, they helped my team a lot.”',
-      name: 'Natalie Bloom',
-      position: 'Marketing of Simpage',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/2341350/pexels-photo-2341350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“The support team was incredibly helpful and responsive. Couldn’t be happier with the results.”',
-      name: 'Alex Smith',
-      position: 'CEO of Growtech',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/15502152/pexels-photo-15502152/free-photo-of-posed-photo-of-a-young-woman-in-a-black-hat-covered-in-snow.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“Really happy with the product and kind services provided by Cofile. Will recommend it to the world!”',
-      name: 'Ashley Rock',
-      position: 'Founder of Paple',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“Top class product and services! Since my first sign up, they helped my team a lot.”',
-      name: 'Natalie Bloom',
-      position: 'Marketing of Simpage',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/2341350/pexels-photo-2341350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“The support team was incredibly helpful and responsive. Couldn’t be happier with the results.”',
-      name: 'Alex Smith',
-      position: 'CEO of Growtech',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/15502152/pexels-photo-15502152/free-photo-of-posed-photo-of-a-young-woman-in-a-black-hat-covered-in-snow.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“Really happy with the product and kind services provided by Cofile. Will recommend it to the world!”',
-      name: 'Ashley Rock',
-      position: 'Founder of Paple',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“Top class product and services! Since my first sign up, they helped my team a lot.”',
-      name: 'Natalie Bloom',
-      position: 'Marketing of Simpage',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/2341350/pexels-photo-2341350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      quote:
-        '“The support team was incredibly helpful and responsive. Couldn’t be happier with the results.”',
-      name: 'Alex Smith',
-      position: 'CEO of Growtech',
+        '“They are the best. I dont worry about anything. Eagletax has always been and will always be my protector with my businesses in this country.thank you for everything and I highly recommend them to everyone”',
+      name: 'Ricardo C. Chimenes',
+      position: 'Rick and Sons Tile, Inc',
     },
   ];
 

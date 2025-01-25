@@ -66,10 +66,10 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     if (this.contactForm.valid) {
       const templateParams: { [key: string]: any } = {
-        nome: this.contactForm.get('nome')?.value,
+        nome: this.contactForm.get('name')?.value,
         email: this.contactForm.get('email')?.value,
-        telefone: this.contactForm.get('telefone')?.value,
-        mensagem: this.contactForm.get('mensagem')?.value,
+        telefone: this.contactForm.get('telephone')?.value,
+        mensagem: this.contactForm.get('message')?.value,
       };
   
       emailjs
@@ -82,8 +82,8 @@ export class ContactComponent implements OnInit {
         .then(
           (response: EmailJSResponseStatus) => {
             Swal.fire({
-              title: 'Sucesso!',
-              text: 'Formulário enviado com sucesso!',
+              title: 'Success!',
+              text: 'Form submitted successfully!',
               icon: 'success',
               confirmButtonText: 'OK'
             });
@@ -94,8 +94,8 @@ export class ContactComponent implements OnInit {
           (error) => {
             console.error('FAILED...', error);
             Swal.fire({
-              title: 'Erro!',
-              text: 'Erro ao enviar o formulário. Tente novamente.',
+              title: 'Error!',
+              text: 'Error submitting form. Please try again.',
               icon: 'error',
               confirmButtonText: 'OK'
             });
@@ -103,8 +103,8 @@ export class ContactComponent implements OnInit {
         );
     } else {
       Swal.fire({
-        title: 'Atenção!',
-        text: 'Por favor, preencha todos os campos corretamente.',
+        title: 'Warning!',
+        text: 'Please fill in all fields correctly..',
         icon: 'warning',
         confirmButtonText: 'OK'
       });

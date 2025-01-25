@@ -35,12 +35,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
         'We offer comprehensive corporate services, including the formation and dissolution of LLCs and corporations. Our experts guide you through the legal requirements and paperwork, ensuring a smooth and efficient process tailored to your business needs.',
     },
     {
-      icon: 'assets/images/icon-paralegal.svg',
-      title: 'Paralegal Services',
-      content:
-        'Our paralegal services specialize in immigration processes, providing guidance and support for individuals navigating visa applications, residency permits, and other immigration-related matters. We ensure that you understand the requirements and assist you through each step of the process.',
-    },
-    {
       icon: 'assets/images/icon-boifincen.svg',
       title: 'BOI Reporting',
       content:

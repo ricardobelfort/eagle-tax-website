@@ -16,12 +16,12 @@ export class HeaderComponent {
 
   languages = [
     { value: 'en', label: 'English', image: 'us-flag.png' },
-    { value: 'es', label: 'Spanish', image: 'spain-flag.png' },
-    {
-      value: 'br',
-      label: 'Português',
-      image: 'brazil-flag.png',
-    },
+    // { value: 'es', label: 'Spanish', image: 'spain-flag.png' },
+    // {
+    //   value: 'br',
+    //   label: 'Português',
+    //   image: 'brazil-flag.png',
+    // },
   ];
 
   toggleDropdown() {

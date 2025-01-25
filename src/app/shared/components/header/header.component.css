@@ -1,7 +1,6 @@
 .header {
-  width: 960px;
-  height: 84px;
-  margin: 0 auto;
+  height: 60px;
+  margin: 0 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,10 +93,10 @@
   .navbar {
     display: flex;
     align-items: center;
+    gap: 48px;
   }
 
   .nav-item {
-    margin-right: 32px;
     font-size: 16px;
     color: var(--white-color);
     cursor: pointer;
@@ -114,6 +113,65 @@
 
   .nav-item.active {
     font-weight: 700;
-    color: var(--light-color); /* Optional: Change color for active item */
+    color: var(--light-color);
+  }
+
+  /* Estilo do submenu */
+  .submenu {
+    position: relative; /* Define a posição como base para o submenu */
+  }
+
+  .submenu-trigger {
+    cursor: pointer;
+    color: var(--white-color);
+    text-decoration: none;
+  }
+
+  .submenu-items {
+    display: none;
+    position: absolute; /* Garante que o submenu seja relativo ao pai */
+    top: 100%; /* Posiciona abaixo do item principal */
+    left: 0;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    min-width: 150px; /* Garante um tamanho fixo */
+    padding: 8px 0; /* Adiciona espaçamento interno */
+    margin: 0; /* Remove qualquer margem */
+  }
+
+  .submenu-item {
+    display: block;
+    padding: 8px 16px; /* Espaçamento interno para os itens */
+    color: var(--white-color);
+    text-decoration: none;
+    white-space: nowrap; /* Evita quebra de texto */
+  }
+
+  .submenu-item:hover {
+    background-color: var(--primary-color); /* Destaque no hover */
+  }
+
+  /* Mantém o submenu visível enquanto o mouse estiver sobre ele */
+  .submenu:hover .submenu-items {
+    display: block;
+  }
+
+  /* Garante que o submenu não desapareça ao interagir com seus itens */
+  .submenu-items {
+    pointer-events: auto;
+    margin: 0; /* Remove qualquer margem que cause gaps */
+    padding: 0; /* Remove padding desnecessário */
+  }
+
+  .submenu-items:hover {
+    display: block; /* Permite interação contínua */
+  }
+
+  /* Garante que o submenu ocupe o espaço necessário sem lacunas */
+  .submenu:hover .submenu-items,
+  .submenu-items:hover {
+    display: block;
   }
 }

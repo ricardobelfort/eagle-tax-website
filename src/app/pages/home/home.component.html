@@ -154,6 +154,7 @@
                 class="poppins-regular"
                 formControlName="phone"
                 placeholder="Fill in your phone"
+                [mask]="'+X (XXX) XXX-XXXX'"
               />
               <button type="submit" [disabled]="!step4Form.valid">Next</button>
             </form>
@@ -290,6 +291,7 @@
                 class="poppins-regular"
                 formControlName="phone"
                 placeholder="Fill in your phone"
+                [mask]="'+X (XXX) XXX-XXXX'"
               />
               <button type="submit" [disabled]="!step5Form.valid">Next</button>
             </form>
@@ -401,6 +403,7 @@
                 class="poppins-regular"
                 formControlName="phone"
                 placeholder="Fill in your phone"
+                [mask]="'+X (XXX) XXX-XXXX'"
               />
               <button type="submit" [disabled]="!step4Form.valid">Next</button>
             </form>
@@ -526,6 +529,8 @@
             <a href="mailto:info@eagle-tax.com">info&#64;eagle-tax.com</a>
           </li>
         </ul>
+        <h4>EagleTax QR Code</h4>
+        <img src="assets/images/qr-code-eagletax.png" width="200" alt="QR Code EagleTax" title="QR Code EagleTax">
       </aside>
 
       <div class="contact-form">
@@ -584,68 +589,68 @@
               class="error-message"
             >
               <small *ngIf="contactForm.get('email')?.errors?.['required']"
-                >E-mail é obrigatório.</small
+                >Email is required.</small
               >
               <small *ngIf="contactForm.get('email')?.errors?.['email']"
-                >E-mail inválido.</small
+                >Email is invalid.</small
               >
             </div>
           </label>
-          <label for="telefone">
+          <label for="telephone">
             Telephone
             <input
               type="tel"
-              name="telefone"
-              id="telefone"
-              formControlName="telefone"
+              name="telephone"
+              id="telephone"
+              formControlName="telephone"
               placeholder="+X (XXX) XXX-XXXX"
               [mask]="'+X (XXX) XXX-XXXX'"
               [ngClass]="{
                 'is-invalid':
-                  contactForm.get('telefone')?.invalid &&
-                  contactForm.get('telefone')?.touched
+                  contactForm.get('telephone')?.invalid &&
+                  contactForm.get('telephone')?.touched
               }"
               required
             />
             <div
               *ngIf="
-                contactForm.get('telefone')?.invalid &&
-                contactForm.get('telefone')?.touched
+                contactForm.get('telephone')?.invalid &&
+                contactForm.get('telephone')?.touched
               "
               class="error-message"
             >
-              <small *ngIf="contactForm.get('telefone')?.errors?.['required']"
-                >Telefone é obrigatório.</small
+              <small *ngIf="contactForm.get('telephone')?.errors?.['required']"
+                >Telephone is required.</small
               >
             </div>
           </label>
-          <label for="mensagem">
+          <label for="message">
             Message
             <textarea
-              name="mensagem"
-              id="mensagem"
-              formControlName="mensagem"
+              name="message"
+              id="message"
+              formControlName="message"
               placeholder="Fill in your message"
               rows="5"
               [ngClass]="{
                 'is-invalid':
-                  contactForm.get('mensagem')?.invalid &&
-                  contactForm.get('mensagem')?.touched
+                  contactForm.get('message')?.invalid &&
+                  contactForm.get('message')?.touched
               }"
               required
             ></textarea>
             <div
               *ngIf="
-                contactForm.get('mensagem')?.invalid &&
-                contactForm.get('mensagem')?.touched
+                contactForm.get('message')?.invalid &&
+                contactForm.get('message')?.touched
               "
               class="error-message"
             >
-              <small *ngIf="contactForm.get('mensagem')?.errors?.['required']"
-                >Mensagem é obrigatória.</small
+              <small *ngIf="contactForm.get('message')?.errors?.['required']"
+                >Message is required.</small
               >
-              <small *ngIf="contactForm.get('mensagem')?.errors?.['minlength']"
-                >Mensagem deve ter pelo menos 10 caracteres.</small
+              <small *ngIf="contactForm.get('message')?.errors?.['minlength']"
+                >Message must be at least 10 characters.</small
               >
             </div>
           </label>
