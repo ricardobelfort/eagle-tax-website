@@ -574,3 +574,8 @@
   font-size: 12px;
   margin-top: 5px;
 }
+
+.swal2-service-modal {
+  border-radius: 16px;
+  padding: 24px;
+}

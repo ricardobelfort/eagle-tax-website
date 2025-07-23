@@ -1,3 +1,4 @@
+import { CommonModule, ViewportScroller } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -5,22 +6,21 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule, ViewportScroller } from '@angular/common';
-import { SharedModule } from '../../shared/shared.module';
-import { ToastComponent } from '../../shared/components/toast/toast.component';
-import { NgxMaskDirective } from 'ngx-mask';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import Swal from 'sweetalert2';
 import { environment } from '@environments/environment';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgxMaskDirective } from 'ngx-mask';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import Swal from 'sweetalert2';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-home',
@@ -165,6 +165,23 @@ export class HomeComponent implements OnInit {
         'We offer ITIN (Individual Taxpayer Identification Number) services',
     },
   ];
+
+  fullDescriptions: { [key: string]: string } = {
+    'Tax Return Preparation': `We provide comprehensive tax return preparation services, ensuring that your filings are accurate, timely, and compliant with federal and state regulations. Our experienced team navigates the complexities of tax codes to maximize your deductions and minimize your liabilities.`,
+    'Bookkeeping': `We offer meticulous bookkeeping and accounting services tailored to your business needs. From daily transaction management to financial reporting, our team ensures your records are accurate and up-to-date, enabling you to make informed decisions.`,
+    'Corporate Services': `We offer comprehensive corporate services, including the formation and dissolution of LLCs and corporations. Our experts guide you through the legal requirements and paperwork, ensuring a smooth and efficient process tailored to your business needs.`,
+    'BOI Reporting': `We assist clients in filing the Beneficial Ownership Information (BOI) report with FINCEN, ensuring compliance with federal regulations regarding the disclosure of beneficial ownership.`,
+    'Annual Reports': `We assist with the preparation and filing of annual reports required to renew your company registration with the Secretary of State, helping you maintain compliance and good standing.`,
+    'Sales Tax Compliance': `Navigating sales tax regulations can be complex. Our services help businesses ensure compliance with local, state, and federal sales tax laws, reducing the risk of audits and penalties while optimizing your tax position.`,
+    "Worker's Audits": `Our team conducts thorough workers’ compensation audits to ensure compliance with state regulations and accurate premium calculations. We help you identify potential savings and reduce your overall costs while maintaining proper coverage.`,
+    '1099 Reporting': `We handle 1099 reports to the IRS, ensuring that your independent contractors and other payees are reported accurately and on time.`,
+    'Notary Services': `Our notary services are available to authenticate documents, providing the legal assurance you need for important paperwork.`,
+    'Tax Extensions': `If you need more time to file your taxes, we can help you apply for a tax extension, giving you additional time to prepare and submit your returns without penalties.`,
+    'IRS Dispute Resolution': `Facing an IRS dispute can be daunting. Our experts are here to assist you in resolving issues with the IRS, including audits, penalties, and collections. We advocate on your behalf, working to reach favorable outcomes and restore your peace of mind.`,
+    'International and Expatriate': `Our specialized services for international and expatriate clients address unique tax challenges, including compliance with U.S. tax laws and regulations. We help you understand your obligations while maximizing your benefits, ensuring a smooth tax experience whether you are living abroad or returning home.`,
+    'Payroll Services': `We streamline your payroll process with our comprehensive payroll services, handling everything from payroll processing to tax withholdings. We ensure compliance with all payroll regulations, allowing you to focus on growing your business.`,
+    'ITIN and CAA Services': `We offer ITIN (Individual Taxpayer Identification Number) services, authorized by the IRS to certify passports for the ITIN application process. Our Certified Acceptance Agents (CAAs) simplify the process, ensuring you receive your ITIN efficiently and accurately.`,
+  };
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -452,7 +469,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  navigateToService(index: number): void {
-    this.router.navigate(['/services'], { queryParams: { index } });
+  openServiceModal(item: { icon: string; title: string; content: string }): void {
+    const fullContent = this.fullDescriptions[item.title] || item.content;
+
+    Swal.fire({
+      title: item.title,
+      html: `
+        <div style="display: flex; flex-direction: column; text-align: left;">
+          <p style="font-size: 1rem; line-height: 1.6;">${fullContent}</p>
+        </div>
+      `,
+      showCloseButton: true,
+      showConfirmButton: false,
+      width: 600,
+      customClass: {
+        popup: 'swal2-service-modal',
+      },
+    });
   }
 }

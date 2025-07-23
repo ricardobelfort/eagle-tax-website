@@ -24,26 +24,38 @@
 <main class="main-content">
   <section class="group">
     <div class="content">
-      <img src="assets/images/alvin-hommerding.jpg" alt="CEO Alvin Hommerding" width="300" loading="lazy" />
+      <img
+        src="assets/images/alvin-hommerding.jpg"
+        alt="CEO Alvin Hommerding"
+        width="300"
+        loading="lazy"
+      />
       <article>
         <h2>Welcome to Eagle Tax</h2>
 
-        <p>Thank you for trusting Eagle Tax with your business
-        needs. Whether it's payroll, tax preparation, accounting, business
-        formation, or IRS representation, your decision to partner with us
-        reflects your commitment to excellence, compliance, and long-term
-        success.</p>
+        <p>
+          Thank you for trusting Eagle Tax with your business needs. Whether
+          it's payroll, tax preparation, accounting, business formation, or IRS
+          representation, your decision to partner with us reflects your
+          commitment to excellence, compliance, and long-term success.
+        </p>
 
-        <p>At Eagle Tax, we are dedicated to delivering accurate,
-        efficient, and personalized financial services. Our team is here to
-        support you every step of the way with the integrity and professionalism
-        you deserve.</p>
-        
-        <p>We're honored to be part of your journey and look forward
-        to helping your business thrive.</p>
+        <p>
+          At Eagle Tax, we are dedicated to delivering accurate, efficient, and
+          personalized financial services. Our team is here to support you every
+          step of the way with the integrity and professionalism you deserve.
+        </p>
 
-        <p>Warm regards, Alvin Hommerding Managing
-        Partner, Eagle Tax</p>
+        <p>
+          We're honored to be part of your journey and look forward to helping
+          your business thrive.
+        </p>
+
+        <p>
+          Warm regards, <br /><br />
+          <b>Alvin Hommerding</b> <br />
+          Managing Partner, Eagle Tax
+        </p>
       </article>
     </div>
   </section>
@@ -509,8 +521,8 @@
     <div class="content-grid">
       <div
         class="item"
-        *ngFor="let item of items; let i = index"
-        (click)="navigateToService(i)"
+        *ngFor="let item of items"
+        (click)="openServiceModal(item)"
       >
         <img [src]="item.icon" alt="" />
         <h3>{{ item.title }}</h3>
