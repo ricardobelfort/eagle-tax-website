@@ -174,7 +174,6 @@
 
 .our-team {
   width: 100%;
-  background-color: var(--light-color);
   text-align: center;
   padding: 100px 0;
 }
@@ -190,9 +189,8 @@
 
 .our-team .content .content-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 140px;
-  row-gap: 50px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 64px;
 }
 
 .our-team .content .content-grid .item {
@@ -202,8 +200,8 @@
 }
 
 .our-team .content .content-grid .item img {
-  width: 14rem;
-  height: 14rem;
+  width: 11rem;
+  height: 11rem;
   border-radius: 9999px;
   margin-bottom: 16px;
 }
@@ -217,7 +215,7 @@
 .testimonials {
   padding: 100px 0;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--light-color);
   position: relative;
 }
 
@@ -281,7 +279,7 @@
 }
 
 .testimonial-quote {
-  font-size: 14px;
+  font-size: 12px;
   color: #333;
   margin: 10px 0;
 }

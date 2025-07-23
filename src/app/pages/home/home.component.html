@@ -22,445 +22,482 @@
 </section>
 
 <main class="main-content">
-  <section class="service-form">
-    <article class="left">
-      <h2>Get personalized service</h2>
-      <p>
-        Here, you can count on experts in a wide range of accounting services,
-        dedicated to serving both residents and immigrants in the USA.
-      </p>
-    </article>
-    <article class="right">
-      <header>
-        <h3>What do you need help with?</h3>
-        <p>This will give our team an idea of ​​how they can assist you.</p>
-      </header>
-
-      <div class="form-carousel">
-        <div [ngSwitch]="currentStep">
-          <!-- Step 1 -->
-          <form
-            *ngSwitchCase="1"
-            [formGroup]="step1Form"
-            class="custom-form"
-            (ngSubmit)="nextStep()"
-          >
-            <label for="impostosPessoais">
-              <input
-                type="radio"
-                formControlName="option"
-                value="Personal Taxes"
-                id="1"
-              />
-              Personal Taxes
-            </label>
-            <label for="pequenosNegocios">
-              <input
-                type="radio"
-                formControlName="option"
-                value="Small-Business Taxes"
-                id="2"
-              />
-              Small-Business Taxes
-            </label>
-            <label for="novoNegocio">
-              <input
-                type="radio"
-                formControlName="option"
-                value="Start a Business"
-                id="3"
-              />
-              Start a Business
-            </label>
-            <button type="submit" [disabled]="!step1Form.valid">Next</button>
-          </form>
-
-          <div *ngIf="selectedOption === 'Personal Taxes'">
-            <!-- Step 2 -->
-            <form
-              *ngSwitchCase="2"
-              [formGroup]="step2Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>1. What is your name?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="firstName"
-                placeholder="First name"
-              />
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="lastName"
-                placeholder="Last name"
-              />
-              <button type="submit" [disabled]="!step2Form.valid">Next</button>
-            </form>
-
-            <!-- Step 3 -->
-            <form
-              *ngSwitchCase="3"
-              [formGroup]="step3Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>2. What is your email information?</h3>
-              <p>We will use this to invite you to our system.</p>
-              <input
-                type="email"
-                class="poppins-regular"
-                formControlName="email"
-                placeholder="Fill in your email"
-              />
-              <button type="submit" [disabled]="!step3Form.valid">Next</button>
-            </form>
-
-            <!-- Step 4 -->
-            <form
-              *ngSwitchCase="4"
-              [formGroup]="step4Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>3. What is your phone number?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="phone"
-                placeholder="Fill in your phone"
-                [mask]="'+X (XXX) XXX-XXXX'"
-              />
-              <button type="submit" [disabled]="!step4Form.valid">Next</button>
-            </form>
-
-            <!-- Step 5 -->
-            <form
-              *ngSwitchCase="5"
-              [formGroup]="step5Form"
-              class="custom-form"
-              (ngSubmit)="submitForm()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>
-                4. What do you think is important for us to know before
-                contacting you?
-              </h3>
-              <textarea
-                class="poppins-regular"
-                rows="2"
-                formControlName="message"
-                placeholder="Fill in your message"
-              ></textarea>
-              <button type="submit" [disabled]="!step5Form.valid">Send</button>
-            </form>
-          </div>
-
-          <div *ngIf="selectedOption === 'Small-Business Taxes'">
-            <!-- Step 2 -->
-            <form
-              *ngSwitchCase="2"
-              [formGroup]="step2Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>1. What is your name?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="firstName"
-                placeholder="First name"
-              />
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="lastName"
-                placeholder="Last name"
-              />
-              <button type="submit" [disabled]="!step2Form.valid">Next</button>
-            </form>
-
-            <!-- Step 3 -->
-            <form
-              *ngSwitchCase="3"
-              [formGroup]="step3Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>2. What is the name of your company?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="businessName"
-                placeholder="Enter company name"
-              />
-              <button type="submit" [disabled]="!step3Form.valid">Next</button>
-            </form>
-
-            <!-- Step 4 -->
-            <form
-              *ngSwitchCase="4"
-              [formGroup]="step4Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>3. What is your email?</h3>
-              <input
-                type="email"
-                class="poppins-regular"
-                formControlName="email"
-                placeholder="Fill in your email"
-              />
-              <button type="submit" [disabled]="!step4Form.valid">Next</button>
-            </form>
-
-            <!-- Step 5 -->
-            <form
-              *ngSwitchCase="5"
-              [formGroup]="step5Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>4. What is your phone number?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="phone"
-                placeholder="Fill in your phone"
-                [mask]="'+X (XXX) XXX-XXXX'"
-              />
-              <button type="submit" [disabled]="!step5Form.valid">Next</button>
-            </form>
-
-            <!-- Step 6 -->
-            <form
-              *ngSwitchCase="6"
-              [formGroup]="step6Form"
-              class="custom-form"
-              (ngSubmit)="submitForm()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>
-                5. O que você acha que é importante que saibamos antes de entrar
-                em contato com você?
-              </h3>
-              <textarea
-                class="poppins-regular"
-                rows="2"
-                formControlName="message"
-                placeholder="Deixe sua mensagem"
-              ></textarea>
-              <button type="submit" [disabled]="!step6Form.valid">Send</button>
-            </form>
-          </div>
-
-          <div *ngIf="selectedOption === 'Start a Business'">
-            <!-- Step 2 -->
-            <form
-              *ngSwitchCase="2"
-              [formGroup]="step2Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>1. What is your name?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="firstName"
-                placeholder="First name"
-              />
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="lastName"
-                placeholder="Last name"
-              />
-              <button type="submit" [disabled]="!step2Form.valid">Next</button>
-            </form>
-
-            <!-- Step 3 -->
-            <form
-              *ngSwitchCase="3"
-              [formGroup]="step3Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>2. What is your email?</h3>
-              <input
-                type="email"
-                class="poppins-regular"
-                formControlName="email"
-                placeholder="Fill in your email"
-              />
-              <button type="submit" [disabled]="!step3Form.valid">Next</button>
-            </form>
-
-            <!-- Step 4 -->
-            <form
-              *ngSwitchCase="4"
-              [formGroup]="step4Form"
-              class="custom-form"
-              (ngSubmit)="nextStep()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>3. What is your phone number?</h3>
-              <input
-                type="text"
-                class="poppins-regular"
-                formControlName="phone"
-                placeholder="Fill in your phone"
-                [mask]="'+X (XXX) XXX-XXXX'"
-              />
-              <button type="submit" [disabled]="!step4Form.valid">Next</button>
-            </form>
-
-            <!-- Step 5 -->
-            <form
-              *ngSwitchCase="5"
-              [formGroup]="step5Form"
-              class="custom-form"
-              (ngSubmit)="submitForm()"
-            >
-              <div style="display: flex; align-items: center">
-                <ng-container *ngIf="currentStep > 1">
-                  <button class="btn-prev" (click)="prevStep()">
-                    <img src="assets/images/arrow-left.svg" alt="" />
-                  </button>
-                </ng-container>
-                <h2>{{ selectedOption }}</h2>
-              </div>
-              <h3>
-                4. What do you think is important for us to know before
-                contacting you?
-              </h3>
-              <textarea
-                class="poppins-regular"
-                rows="2"
-                formControlName="message"
-                placeholder="Deixe sua mensagem"
-              ></textarea>
-              <button type="submit" [disabled]="!step5Form.valid">Send</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="status">
-        <small>{{ progress }}% completed</small>
-        <progress id="file" [value]="progress" max="100"></progress>
-      </div>
-    </article>
-  </section>
-
   <section class="group">
     <div class="content">
-      <img src="assets/images/image1.jpg" alt="Missão" loading="lazy" />
+      <img src="assets/images/alvin-hommerding.jpg" alt="CEO Alvin Hommerding" width="300" loading="lazy" />
       <article>
-        <h2>We are a group of individuals with a great mission</h2>
-        <p>
-          We are a group dedicated to helping U.S. residents file and pay their
-          taxes in a fair and hassle-free manner.
-        </p>
-        <p>
-          We offer a variety of services to simplify this process and ensure
-          everything is done correctly.
-        </p>
+        <h2>Welcome to Eagle Tax</h2>
+
+        <p>Thank you for trusting Eagle Tax with your business
+        needs. Whether it's payroll, tax preparation, accounting, business
+        formation, or IRS representation, your decision to partner with us
+        reflects your commitment to excellence, compliance, and long-term
+        success.</p>
+
+        <p>At Eagle Tax, we are dedicated to delivering accurate,
+        efficient, and personalized financial services. Our team is here to
+        support you every step of the way with the integrity and professionalism
+        you deserve.</p>
+        
+        <p>We're honored to be part of your journey and look forward
+        to helping your business thrive.</p>
+
+        <p>Warm regards, Alvin Hommerding Managing
+        Partner, Eagle Tax</p>
       </article>
     </div>
   </section>
+
+  <div class="w-full">
+    <section class="service-form">
+      <article class="left">
+        <h2>Get personalized service</h2>
+        <p>
+          Here, you can count on experts in a wide range of accounting services,
+          dedicated to serving both residents and immigrants in the USA.
+        </p>
+      </article>
+      <article class="right">
+        <header>
+          <h3>What do you need help with?</h3>
+          <p>This will give our team an idea of ​​how they can assist you.</p>
+        </header>
+
+        <div class="form-carousel">
+          <div [ngSwitch]="currentStep">
+            <!-- Step 1 -->
+            <form
+              *ngSwitchCase="1"
+              [formGroup]="step1Form"
+              class="custom-form"
+              (ngSubmit)="nextStep()"
+            >
+              <label for="impostosPessoais">
+                <input
+                  type="radio"
+                  formControlName="option"
+                  value="Personal Taxes"
+                  id="1"
+                />
+                Personal Taxes
+              </label>
+              <label for="pequenosNegocios">
+                <input
+                  type="radio"
+                  formControlName="option"
+                  value="Small-Business Taxes"
+                  id="2"
+                />
+                Small-Business Taxes
+              </label>
+              <label for="novoNegocio">
+                <input
+                  type="radio"
+                  formControlName="option"
+                  value="Start a Business"
+                  id="3"
+                />
+                Start a Business
+              </label>
+              <button type="submit" [disabled]="!step1Form.valid">Next</button>
+            </form>
+
+            <div *ngIf="selectedOption === 'Personal Taxes'">
+              <!-- Step 2 -->
+              <form
+                *ngSwitchCase="2"
+                [formGroup]="step2Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>1. What is your name?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="firstName"
+                  placeholder="First name"
+                />
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="lastName"
+                  placeholder="Last name"
+                />
+                <button type="submit" [disabled]="!step2Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 3 -->
+              <form
+                *ngSwitchCase="3"
+                [formGroup]="step3Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>2. What is your email information?</h3>
+                <p>We will use this to invite you to our system.</p>
+                <input
+                  type="email"
+                  class="poppins-regular"
+                  formControlName="email"
+                  placeholder="Fill in your email"
+                />
+                <button type="submit" [disabled]="!step3Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 4 -->
+              <form
+                *ngSwitchCase="4"
+                [formGroup]="step4Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>3. What is your phone number?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="phone"
+                  placeholder="Fill in your phone"
+                  [mask]="'+X (XXX) XXX-XXXX'"
+                />
+                <button type="submit" [disabled]="!step4Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 5 -->
+              <form
+                *ngSwitchCase="5"
+                [formGroup]="step5Form"
+                class="custom-form"
+                (ngSubmit)="submitForm()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>
+                  4. What do you think is important for us to know before
+                  contacting you?
+                </h3>
+                <textarea
+                  class="poppins-regular"
+                  rows="2"
+                  formControlName="message"
+                  placeholder="Fill in your message"
+                ></textarea>
+                <button type="submit" [disabled]="!step5Form.valid">
+                  Send
+                </button>
+              </form>
+            </div>
+
+            <div *ngIf="selectedOption === 'Small-Business Taxes'">
+              <!-- Step 2 -->
+              <form
+                *ngSwitchCase="2"
+                [formGroup]="step2Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>1. What is your name?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="firstName"
+                  placeholder="First name"
+                />
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="lastName"
+                  placeholder="Last name"
+                />
+                <button type="submit" [disabled]="!step2Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 3 -->
+              <form
+                *ngSwitchCase="3"
+                [formGroup]="step3Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>2. What is the name of your company?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="businessName"
+                  placeholder="Enter company name"
+                />
+                <button type="submit" [disabled]="!step3Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 4 -->
+              <form
+                *ngSwitchCase="4"
+                [formGroup]="step4Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>3. What is your email?</h3>
+                <input
+                  type="email"
+                  class="poppins-regular"
+                  formControlName="email"
+                  placeholder="Fill in your email"
+                />
+                <button type="submit" [disabled]="!step4Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 5 -->
+              <form
+                *ngSwitchCase="5"
+                [formGroup]="step5Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>4. What is your phone number?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="phone"
+                  placeholder="Fill in your phone"
+                  [mask]="'+X (XXX) XXX-XXXX'"
+                />
+                <button type="submit" [disabled]="!step5Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 6 -->
+              <form
+                *ngSwitchCase="6"
+                [formGroup]="step6Form"
+                class="custom-form"
+                (ngSubmit)="submitForm()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>
+                  5. O que você acha que é importante que saibamos antes de
+                  entrar em contato com você?
+                </h3>
+                <textarea
+                  class="poppins-regular"
+                  rows="2"
+                  formControlName="message"
+                  placeholder="Deixe sua mensagem"
+                ></textarea>
+                <button type="submit" [disabled]="!step6Form.valid">
+                  Send
+                </button>
+              </form>
+            </div>
+
+            <div *ngIf="selectedOption === 'Start a Business'">
+              <!-- Step 2 -->
+              <form
+                *ngSwitchCase="2"
+                [formGroup]="step2Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>1. What is your name?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="firstName"
+                  placeholder="First name"
+                />
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="lastName"
+                  placeholder="Last name"
+                />
+                <button type="submit" [disabled]="!step2Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 3 -->
+              <form
+                *ngSwitchCase="3"
+                [formGroup]="step3Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>2. What is your email?</h3>
+                <input
+                  type="email"
+                  class="poppins-regular"
+                  formControlName="email"
+                  placeholder="Fill in your email"
+                />
+                <button type="submit" [disabled]="!step3Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 4 -->
+              <form
+                *ngSwitchCase="4"
+                [formGroup]="step4Form"
+                class="custom-form"
+                (ngSubmit)="nextStep()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>3. What is your phone number?</h3>
+                <input
+                  type="text"
+                  class="poppins-regular"
+                  formControlName="phone"
+                  placeholder="Fill in your phone"
+                  [mask]="'+X (XXX) XXX-XXXX'"
+                />
+                <button type="submit" [disabled]="!step4Form.valid">
+                  Next
+                </button>
+              </form>
+
+              <!-- Step 5 -->
+              <form
+                *ngSwitchCase="5"
+                [formGroup]="step5Form"
+                class="custom-form"
+                (ngSubmit)="submitForm()"
+              >
+                <div style="display: flex; align-items: center">
+                  <ng-container *ngIf="currentStep > 1">
+                    <button class="btn-prev" (click)="prevStep()">
+                      <img src="assets/images/arrow-left.svg" alt="" />
+                    </button>
+                  </ng-container>
+                  <h2>{{ selectedOption }}</h2>
+                </div>
+                <h3>
+                  4. What do you think is important for us to know before
+                  contacting you?
+                </h3>
+                <textarea
+                  class="poppins-regular"
+                  rows="2"
+                  formControlName="message"
+                  placeholder="Deixe sua mensagem"
+                ></textarea>
+                <button type="submit" [disabled]="!step5Form.valid">
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="status">
+          <small>{{ progress }}% completed</small>
+          <progress id="file" [value]="progress" max="100"></progress>
+        </div>
+      </article>
+    </section>
+  </div>
 
   <section class="services">
     <header class="services-header">
@@ -483,7 +520,7 @@
   </section>
 
   <section class="brands">
-    <h2>Our Clients</h2>
+    <h2>Clients Who Trust Us</h2>
     <div class="brands-content">
       <p>BARBECUE BOUTIQUE</p>
       <p>FRATELLIS</p>
@@ -521,7 +558,8 @@
               src="assets/images/icon-whatsapp.svg"
               alt="Eagle tax whatsapp"
             />
-            <strong>WhatsApp:</strong> <a href="https://wa.me/19545323842">+1 (954) 532-3842</a>
+            <strong>WhatsApp:</strong>
+            <a href="https://wa.me/19545323842">+1 (954) 532-3842</a>
           </li>
           <li>
             <img src="assets/images/icon-mail.svg" alt="Eagle tax email" />
@@ -529,8 +567,6 @@
             <a href="mailto:info@eagle-tax.com">info&#64;eagle-tax.com</a>
           </li>
         </ul>
-        <h4>EagleTax QR Code</h4>
-        <img src="assets/images/qr-code-eagletax.png" width="200" alt="QR Code EagleTax" title="QR Code EagleTax">
       </aside>
 
       <div class="contact-form">

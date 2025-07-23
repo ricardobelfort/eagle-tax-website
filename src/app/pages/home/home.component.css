@@ -131,10 +131,16 @@
   flex-direction: column;
 }
 
+.w-full {
+  width: 100%;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--light-color);
+}
+
 .service-form {
   width: 960px;
-  margin: 0 auto;
-  padding: 50px 0px 100px 0px;
   display: flex;
   align-items: center;
   gap: 100px;
@@ -319,7 +325,6 @@
 
 .group {
   width: 100%;
-  background-color: var(--light-color);
   text-align: center;
   padding: 100px 0;
 }
